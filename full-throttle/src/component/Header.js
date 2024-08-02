@@ -7,6 +7,7 @@ import nopic from '../assest/images/nopic.jpeg';
 import Hamburger from 'hamburger-react'
 import { Modal } from 'react-bootstrap'
 import ReactPlayer from 'react-player' 
+import TopBar from './TopBar';
 
 
 export default function Header() {

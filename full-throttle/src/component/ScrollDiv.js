@@ -1,5 +1,4 @@
 import React from 'react'
-import '../style/ScrollDiv.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faLongArrowLeft, faLongArrowRight} from '@fortawesome/free-solid-svg-icons'
 
@@ -12,7 +11,6 @@ export default function ScrollDiv() {
                 <span class="scroll-text">Scroll</span>
                 <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' />
             </div>
-
         </>
     )
 }

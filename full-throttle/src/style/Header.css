@@ -67,6 +67,7 @@ button.close.custom-close {
   padding: 0px;
   line-height: 12px;
   font-size: 22px;
+  background-image: linear-gradient(to right, #c53026 0%, #930000 51%, #c53026 100%);
   box-shadow: 0px 0px 20px -2px #000;
   border: 0px;
   z-index: 999;

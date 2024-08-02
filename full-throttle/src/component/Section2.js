@@ -3,6 +3,7 @@ import { Container, Row } from 'react-bootstrap'
 import '../style/Section2.css'
 import ScrollDiv from './ScrollDiv'
 import InputBox from './InputBox'
+import BlogCard from './BlogCard'
 
 export default function Section2() {
   return (
@@ -10,7 +11,7 @@ export default function Section2() {
       <section className='sec-roc-abs'>
         <Container>
           <Row>
-            <h2>Rock Those ABS</h2>
+            <h2 className='women-rock-heading title'>Rock Those ABS</h2>
             <div class="sub-title">
               <span>Vote for your favorite hot bodies</span>
             </div>
@@ -22,6 +23,7 @@ export default function Section2() {
               100k votes
             </h3>
             <ScrollDiv/>
+            <BlogCard/>
           </Row>
         </Container>
       </section>

@@ -11,7 +11,6 @@ export default function Section1() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     return (
         <>
             <section className='sec-hero'>
