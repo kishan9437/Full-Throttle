@@ -98,11 +98,21 @@ input[type="reset"] {
   cursor: pointer;
   font-weight: normal;
   text-decoration: none;
-  background-image: linear-gradient(
-    to right,
-    #c53026 0%,
-    #930000 51%,
-    #c53026 100%
-  );
   background-size: 200% auto;
+}
+h2{
+  font-family: "Oswald", sans-serif;
+  font-size: 72px !important;
+  margin: 0px;
+  text-transform: uppercase;
+}
+h3 {
+  font-family: "Oswald", sans-serif;
+  font-size: 40px !important;
+  line-height: 30px;
+  margin: 0px;
+  color: #333132;
+  font-weight: 500;
+  padding-bottom: 30px;
+  text-transform: uppercase;
 }

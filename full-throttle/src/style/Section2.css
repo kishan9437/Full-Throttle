@@ -1,0 +1,42 @@
+.sec-roc-abs{
+    padding: 43px 0px 25px 0px;
+}
+.sec-roc-abs .container{
+    width: 100%;
+    overflow: auto;
+    margin: 0px auto;
+    padding: 0px 15px;
+    max-width: 1850px;
+}
+.sec-roc-abs h2{
+    text-align: center;
+    padding-bottom: 18px;
+}
+.sub-title{
+    color: #ec3237;
+    font-size: 24px;
+    font-weight: 700;
+    display: block;
+    padding-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    line-height: 1.5px;
+}
+.sec-roc-abs h3{
+    text-align: center;
+    line-height: 30px;
+    padding-bottom: 8px;
+}
+h3 em{
+    padding-right: 5px;
+    color: #ec3237;
+    font-size: 55px;
+    font-weight: 700;
+    position: relative;
+    font-style: normal;
+    font-family: "Open Sans",sans-serif;
+}
+h3 strong{
+    font-weight: 600;
+}
