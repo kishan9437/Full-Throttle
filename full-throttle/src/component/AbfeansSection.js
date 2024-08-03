@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import '../style/Section1.scss'
+// import '../style/Section1.scss'
 import { Link } from 'react-router-dom'
 import abfeans from '../assest/images/abfeans.png';
 import { Modal, Button } from 'react-bootstrap'
 
-export default function Section1() {
+export default function AbfeansSection() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -13,6 +13,7 @@ export default function Section1() {
 
     return (
         <>
+            {/* Ab Feans Section */}
             <section className='sec-hero'>
                 <Container>
                     <Row>
