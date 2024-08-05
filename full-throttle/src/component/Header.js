@@ -78,7 +78,7 @@ export default function Header() {
                                         As this site grows in size we will need more and more help administering it.&nbsp;
                                     </li>
                                     <li>
-                                        <strong>Podcast Star or maybe Stars, we’re not sure.</strong>
+                                        <strong>Podcast Star or maybe Stars, were not sure.</strong>
                                         We want to build a Podcast. We have a couple ideas but need more. If you are a talented Podcaster and you want to be part of FTA please reach out.&nbsp;
                                     </li>
                                     <li>
