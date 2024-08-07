@@ -17,6 +17,8 @@ export default function SectionRocAbs() {
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error('Error fetching data', error))
+
+      
   }, [])
 
   if (!data) {
