@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Container, Row, Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faL, faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { CSSTransition } from 'react-transition-group';
+// import '../style/slide.css';
 import business from '../assest/images/business.jpg';
 import merch from '../assest/images/merch.jpg';
 import throtle from '../assest/images/throtle.jpg';
 
 export default function SectionRocAbs() {
   const [data, setData] = useState(null);
-  const [showTable, setShowTable] = useState({})
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const carouselRef = useRef(null);
+  const [visibleTableId, setVisibleTableId] = useState(null)
 
   useEffect(() => {
     fetch('data100kOver.json')
@@ -27,22 +29,16 @@ export default function SectionRocAbs() {
     return <div>Loading...</div>;
   }
 
-  const toggleTable = (index) => {
-    setShowTable((prevShowTable) => ({
-      ...prevShowTable,
-      [index]: !prevShowTable[index],
-    }))
-  }
-
-  const nextSlide = () => {
-    if (currentIndex < data.items.length - 3) {
-      setCurrentIndex(currentIndex + 1)
-    }
-  }
   const prevSlide = () => {
-      setCurrentIndex(currentIndex - 1)
+    carouselRef.current.prev();
+  }
+  const nextSlide = () => {
+    carouselRef.current.next();
   }
 
+  const handleLinkClick = (id) => {
+    setVisibleTableId(prevId => prevId === id ? null : id)
+  }
   return (
     <>
       <section className='sec-roc-abs'>
@@ -65,9 +61,9 @@ export default function SectionRocAbs() {
             </h3>
 
             <div className='scroll-div'>
-              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide}/>
+              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide} />
               <span class="scroll-text">Scroll</span>
-              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide}/>
+              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide} />
             </div>
 
             {/* over 100k votes */}
@@ -76,10 +72,10 @@ export default function SectionRocAbs() {
                 <div className='ove-100k-men-wrap'>
                   <Col md={12} className='male-carousel'>
                     <OwlCarousel id='over_100k_man' className='owl-theme list-thum red-b-bottom' margin={8} items={3} nav responsive={{
-                      0: {items:1,loop:true},
-                      600: {items:3,loop:true} ,
-                      1000: {items:3,loop:false}
-                    }}>
+                      0: { items: 1, loop: true },
+                      600: { items: 3, loop: true },
+                      1000: { items: 3, loop: false }
+                    }} ref={carouselRef}>
                       {data.items.map((item, index) => (
                         <div key={index} className='blog-card item men_sliderOver object-square'>
                           <div className='thum-blog'>
@@ -109,11 +105,12 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection'>
+                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' id={item.id} onClick={() => handleLinkClick(item.id)}>
                               NFT Collectibles
                             </Link>
-                            
-                              <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both', display:'none'}}>
+
+                            <CSSTransition in={visibleTableId === item.id} timeout={300} classNames="slide" unmountOnExit>
+                              <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }} >
                                 <thead>
                                   <tr className='warning'>
                                     <td>
@@ -139,7 +136,9 @@ export default function SectionRocAbs() {
                                   ))}
                                 </tbody>
                               </Table>
-                            
+
+                            </CSSTransition>
+
                           </div>
                         </div>
                       ))}
