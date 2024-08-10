@@ -1039,7 +1039,49 @@ ul.list-fta-spon li {
   max-height: 0;
   opacity: 0;
 } 
+#men_sliderResOver,
+#female_sliderResOver,
+.success_msg,
+.sucessfullvote {
+  font-weight: 700;
+  color: green;
+  font-size: 14px;
+}
+.object-square.highlight  {
+  color: #fff;
+  background-color: #bf2a21 !important;
+  box-shadow: 0 0 10px #7d7d7d !important;
+  padding: 0 0 10px !important;
+  border-color: #bf2a21 !important;
+}
+.object-square.highlight a.btn.nefcollection{
+  background:#fff !important;
+  color:#bf2a21 !important;
+}
+.object-square.highlight a.btn.nefcollection:after
+{
+    border-top: 2.5px solid #bf2a21;
+    border-left: 2.5px solid #bf2a21;
+}
+.object-square.highlight .inn-box-blo h4 a,
+.object-square.highlight .inn-box-blo h6,
+.object-square.highlight .inn-box-blo h6 span,
+.object-square.highlight strong {
+  color: #fff;
+}
+.slide-container {
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  max-height: 0; /* Initially hide the content */
+}
 
+.slide-down {
+  max-height: 500px; /* Set a max-height large enough to show the entire table */
+}
+
+.slide-up {
+  max-height: 0; /* Collapse the content */
+}
 @media (max-width: 1600px) {
   ul.list-fta-spon {
     max-width: 305px;

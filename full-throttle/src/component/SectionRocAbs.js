@@ -1,27 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Container, Row, Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faL, faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { CSSTransition } from 'react-transition-group';
-// import '../style/slide.css';
 import business from '../assest/images/business.jpg';
 import merch from '../assest/images/merch.jpg';
 import throtle from '../assest/images/throtle.jpg';
+import Swal from 'sweetalert2';
 
 export default function SectionRocAbs() {
   const [data, setData] = useState(null);
   const carouselRef = useRef(null);
-  const [visibleTableId, setVisibleTableId] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [highlightedItems, setHighlightedItems] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
+  
 
   useEffect(() => {
     fetch('data100kOver.json')
       .then(response => response.json())
-      .then(data => setData(data))
+      .then(data => setData(data.items))
       .catch(error => console.error('Error fetching data', error))
   }, [])
 
@@ -29,6 +31,32 @@ export default function SectionRocAbs() {
     return <div>Loading...</div>;
   }
 
+  const handleSearchInputChange = (e) => {
+    e.preventDefault();
+    setSearchQuery(e.target.value.toLowerCase().trim());
+  };
+  const handleSearchClick = () => {
+    if (!searchQuery) {
+      Swal.fire({
+        text: "Please enter bodybuilder name.",
+        icon: "warning",
+        confirmButtonColor: "#252525",
+        confirmButtonText: "Ok, got it!",
+      });
+      return;
+    }
+
+    const newHighlightedItems = data.filter((item) => item.name.toLowerCase().includes(searchQuery)).map((item) => item.id)
+
+    setHighlightedItems(newHighlightedItems);
+
+    if (newHighlightedItems.length > 0) {
+      setSearchResult('found');
+    } else {
+      setSearchResult('not_found');
+    }
+  };
+  
   const prevSlide = () => {
     carouselRef.current.prev();
   }
@@ -36,9 +64,7 @@ export default function SectionRocAbs() {
     carouselRef.current.next();
   }
 
-  const handleLinkClick = (id) => {
-    setVisibleTableId(prevId => prevId === id ? null : id)
-  }
+
   return (
     <>
       <section className='sec-roc-abs'>
@@ -50,8 +76,14 @@ export default function SectionRocAbs() {
             </div>
 
             <div className='box-sec-inp'>
-              <input type='text' title='Search' placeholder='Search' id='' />
-              <input type='submit' title='Submit' value='Serch' className='searchBoxCSS' id='' />
+              <input type='text' title='Search' placeholder='Search' id='searchInput' value={searchQuery} onChange={handleSearchInputChange} />
+              <input type='submit' title='Submit' value='Serch' className='searchBoxCSS' id='searchBox1' onClick={handleSearchClick} />
+              {searchResult === 'found' && (
+                <p id='men_sliderResOver'>Result(s) found in Over 100k Votes</p>
+              )}
+              {searchResult === 'not_found' && (
+                <p id='men_sliderResOver'><span style={{ color: 'red' }}>No Match Found</span></p>
+              )}
             </div>
 
             <h3>Officially Viral
@@ -76,8 +108,9 @@ export default function SectionRocAbs() {
                       600: { items: 3, loop: true },
                       1000: { items: 3, loop: false }
                     }} ref={carouselRef}>
-                      {data.items.map((item, index) => (
-                        <div key={index} className='blog-card item men_sliderOver object-square'>
+                      {data.map((item, index) => (
+                        // console.log('filter item : ',item),
+                        <div key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.includes(item.id) ? 'highlight' : ''}`}>
                           <div className='thum-blog'>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title} />
@@ -105,45 +138,39 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' id={item.id} onClick={() => handleLinkClick(item.id)}>
+                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' id={item.id} >
                               NFT Collectibles
                             </Link>
-
-                            <CSSTransition in={visibleTableId === item.id} timeout={300} classNames="slide" unmountOnExit>
-                              <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }} >
-                                <thead>
-                                  <tr className='warning'>
-                                    <td>
-                                      <b>Limited Addition</b>
-                                    </td>
-                                    <td>
-                                      <b>Price</b>
-                                    </td>
-                                    <td>
-                                      <b>Availablity</b>
+                            <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
+                              <thead>
+                                <tr className='warning'>
+                                  <td>
+                                    <b>Limited Addition</b>
+                                  </td>
+                                  <td>
+                                    <b>Price</b>
+                                  </td>
+                                  <td>
+                                    <b>Availablity</b>
+                                  </td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {item.nft_collectibles.map((collectible, index) => (
+                                  <tr key={index} className={collectible.availability === 'SOLD' ? 'danger' : 'success'}>
+                                    <td>{collectible.limited_addition}</td>
+                                    <td>{collectible.price}</td>
+                                    <td className={collectible.availability === 'SOLD' ? 'text-danger' : 'text-success'}>
+                                      <b>{collectible.availability}</b>
                                     </td>
                                   </tr>
-                                </thead>
-                                <tbody>
-                                  {item.nft_collectibles.map((collectible, index) => (
-                                    <tr key={index} className={collectible.availability === 'SOLD' ? 'danger' : 'success'}>
-                                      <td>{collectible.limited_addition}</td>
-                                      <td>{collectible.price}</td>
-                                      <td className={collectible.availability === 'SOLD' ? 'text-danger' : 'text-success'}>
-                                        <b>{collectible.availability}</b>
-                                      </td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </Table>
-
-                            </CSSTransition>
-
+                                ))}
+                              </tbody>
+                            </Table>
                           </div>
                         </div>
                       ))}
                     </OwlCarousel>
-
                   </Col>
                 </div>
               </Col >
