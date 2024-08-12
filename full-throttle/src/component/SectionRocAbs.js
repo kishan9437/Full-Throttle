@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, Children } from 'react'
 import { Container, Row, Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -6,19 +6,38 @@ import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+// import 'owl.carousel/dist/assets/owl.theme.default.css';
 import business from '../assest/images/business.jpg';
 import merch from '../assest/images/merch.jpg';
 import throtle from '../assest/images/throtle.jpg';
 import Swal from 'sweetalert2';
+import { CSSTransition } from 'react-transition-group';
 
+
+function useDisplay(initialDisplay = 'block') {
+  const [display, setDisplay] = useState(initialDisplay);
+  const toggleDisplay = () => {
+    setDisplay(prevDisplay => (prevDisplay === 'none' ? initialDisplay : 'none'));
+  };
+  return [display, toggleDisplay];
+}
+
+const DisplayToggleComponent = ({ isVisible, children }) => {
+  return (
+    <div style={{ display: isVisible ? 'block' : 'none' }}>
+      {children}
+    </div>
+  );
+}
 export default function SectionRocAbs() {
   const [data, setData] = useState(null);
   const carouselRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('')
   const [highlightedItems, setHighlightedItems] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
-  
+  const [isVisible, setIsVisible] = useState(true);
+  const [visibleCardIndex, setVisibleCardIndex] = useState(null);
+
 
   useEffect(() => {
     fetch('data100kOver.json')
@@ -32,10 +51,12 @@ export default function SectionRocAbs() {
   }
 
   const handleSearchInputChange = (e) => {
-    e.preventDefault();
     setSearchQuery(e.target.value.toLowerCase().trim());
   };
-  const handleSearchClick = () => {
+  const handleSearchClick = (e) => {
+    e.stopPropagation(); // Prevent event from bubbling up
+    e.preventDefault(); // Prevent default behavior
+
     if (!searchQuery) {
       Swal.fire({
         text: "Please enter bodybuilder name.",
@@ -46,8 +67,9 @@ export default function SectionRocAbs() {
       return;
     }
 
-    const newHighlightedItems = data.filter((item) => item.name.toLowerCase().includes(searchQuery)).map((item) => item.id)
-
+    // console.log('search', searchQuery)
+    const newHighlightedItems = data.filter((item) => item.name.toLowerCase().includes(searchQuery)).map((item) => item.name);
+    // console.log('json name:', newHighlightedItems)
     setHighlightedItems(newHighlightedItems);
 
     if (newHighlightedItems.length > 0) {
@@ -56,7 +78,7 @@ export default function SectionRocAbs() {
       setSearchResult('not_found');
     }
   };
-  
+
   const prevSlide = () => {
     carouselRef.current.prev();
   }
@@ -64,7 +86,9 @@ export default function SectionRocAbs() {
     carouselRef.current.next();
   }
 
-
+  const handleToggleClick = (index) => {
+    setVisibleCardIndex(prevIndex => prevIndex ? null : index);
+  }
   return (
     <>
       <section className='sec-roc-abs'>
@@ -77,7 +101,7 @@ export default function SectionRocAbs() {
 
             <div className='box-sec-inp'>
               <input type='text' title='Search' placeholder='Search' id='searchInput' value={searchQuery} onChange={handleSearchInputChange} />
-              <input type='submit' title='Submit' value='Serch' className='searchBoxCSS' id='searchBox1' onClick={handleSearchClick} />
+              <input type='submit' title='Submit' value='Search' className='searchBoxCSS' id='searchBox1' onClick={handleSearchClick} />
               {searchResult === 'found' && (
                 <p id='men_sliderResOver'>Result(s) found in Over 100k Votes</p>
               )}
@@ -110,7 +134,7 @@ export default function SectionRocAbs() {
                     }} ref={carouselRef}>
                       {data.map((item, index) => (
                         // console.log('filter item : ',item),
-                        <div key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.includes(item.id) ? 'highlight' : ''}`}>
+                        <div key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.includes(item.name) ? 'highlight' : ''}`}>
                           <div className='thum-blog'>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title} />
@@ -138,42 +162,58 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' id={item.id} >
+                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={() => handleToggleClick(index)}>
                               NFT Collectibles
                             </Link>
-                            <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
-                              <thead>
-                                <tr className='warning'>
-                                  <td>
-                                    <b>Limited Addition</b>
-                                  </td>
-                                  <td>
-                                    <b>Price</b>
-                                  </td>
-                                  <td>
-                                    <b>Availablity</b>
-                                  </td>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {item.nft_collectibles.map((collectible, index) => (
-                                  <tr key={index} className={collectible.availability === 'SOLD' ? 'danger' : 'success'}>
-                                    <td>{collectible.limited_addition}</td>
-                                    <td>{collectible.price}</td>
-                                    <td className={collectible.availability === 'SOLD' ? 'text-danger' : 'text-success'}>
-                                      <b>{collectible.availability}</b>
+                            <DisplayToggleComponent isVisible={visibleCardIndex === index}>
+                              {/* <p>this content will be toggle</p> */}
+
+                              <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
+                                <thead>
+                                  <tr className='warning'>
+                                    <td>
+                                      <b>Limited Addition</b>
+                                    </td>
+                                    <td>
+                                      <b>Price</b>
+                                    </td>
+                                    <td>
+                                      <b>Availablity</b>
                                     </td>
                                   </tr>
-                                ))}
-                              </tbody>
-                            </Table>
+                                </thead>
+                                <tbody>
+                                  {item.nft_collectibles.map((collectible, index) => (
+                                    <tr key={index} className={collectible.availability === 'SOLD' ? 'danger' : 'success'}>
+                                      <td>{collectible.limited_addition}</td>
+                                      <td>{collectible.price}</td>
+                                      <td className={collectible.availability === 'SOLD' ? 'text-danger' : 'text-success'}>
+                                        <b>{collectible.availability}</b>
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </Table>
+                            </DisplayToggleComponent>
                           </div>
                         </div>
                       ))}
                     </OwlCarousel>
                   </Col>
                 </div>
-              </Col >
+                <div className='under-100k-men-wrap'>
+                  <h3 className='sub-head-title'>
+                    <strong>Under </strong>
+                    100k votes
+                    <span>Vote for anyone you feel has what it takes to go viral</span>
+                  </h3>
+                  <div className='scroll-div'>
+                    <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' />
+                    <span class="scroll-text">Scroll</span>
+                    <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' />
+                  </div>
+                </div>
+              </Col>
               <Col xs={12} sm={12} md={12} lg={3} xl={3} className='col-add rt-side-col-sec'>
                 <div className='list-fta-spon-wrapper'>
                   <ul className='list-fta-spon'>
