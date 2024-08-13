@@ -1,0 +1,112 @@
+{
+    "items": [
+        {
+            "id": 6,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/rickythomas_profile_resize.jpg?v=1723538200",
+            "title": "Ricky Thomas",
+            "name": "Ricky Thomas",
+            "rank": "#6",
+            "votes": "735"
+        },
+        {
+            "id": 7,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/brickbernett_profile_resize.jpg?v=1723538200",
+            "title": "Brick Bernett",
+            "name": "Brick Bernett",
+            "rank": "#7",
+            "votes": "465"
+        },
+        {
+            "id": 8,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/matthewhunter_profile_resize.jpg?v=1723538200",
+            "title": "Matthew Hunter",
+            "name": "Matthew Hunter",
+            "rank": "#8",
+            "votes": "232"
+        },
+        {
+            "id": 9,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/jonnyblaz_profile_resize.jpg?v=1723538200",
+            "title": "Jonny Blaz",
+            "name": "Jonny Blaz",
+            "rank": "#9",
+            "votes": "132"
+        },
+        {
+            "id": 10,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/hamishpiterson_profile_resize.jpg?v=1723538200",
+            "title": "Hamish Piterson",
+            "name": "Hamish Piterson",
+            "rank": "#10",
+            "votes": "115"
+        },
+        {
+            "id": 11,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/andrewhill_profile_resize.jpg?v=1723538200",
+            "title": "Andrew Hill",
+            "name": "Andrew Hill",
+            "rank": "#11",
+            "votes": "109"
+        },
+        {
+            "id": 12,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/elliscarson_profile_resize.jpg?v=1723538200",
+            "title": "Ellis Carson",
+            "name": "Ellis Carson",
+            "rank": "#12",
+            "votes": "106"
+        },
+        {
+            "id": 13,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/axelhall_profile_resize.jpg?v=1723538200",
+            "title": "Axel Hall",
+            "name": "Axel Hall",
+            "rank": "#13",
+            "votes": "105"
+        },
+        {
+            "id": 14,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/roberthayward_profile_resize.jpg?v=1723538200",
+            "title": "Robert Hayward",
+            "name": "Robert Hayward",
+            "rank": "#14",
+            "votes": "103"
+        },
+        {
+            "id": 15,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/ryanparker_profile_resize.jpg?v=1723538200",
+            "title": "Ryan Parker",
+            "name": "Ryan Parker",
+            "rank": "#15",
+            "votes": "103"
+        },
+        {
+            "id": 16,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/vincentporter_profile_resize.jpg?v=1723538200",
+            "title": "Vincent Porter",
+            "name": "Vincent Porter",
+            "rank": "#16",
+            "votes": "50"
+        },
+        {
+            "id": 17,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/stevemartin_profile_resize.jpg?v=1723538200",
+            "title": "Steve Martin",
+            "name": "Steve Martin",
+            "rank": "#17",
+            "votes": "49"
+        }
+    ]
+}

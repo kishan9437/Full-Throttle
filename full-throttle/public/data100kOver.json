@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "id":1,
+      "id": 1,
       "link": "/",
       "image": "https://ftabody.s3.us-west-1.amazonaws.com/jeff_profile_resize.jpg?v=1722659460",
       "title": "Jeff Russell",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id":2,
+      "id": 2,
       "link": "/",
       "image": "https://ftabody.s3.us-west-1.amazonaws.com/michalwood_profile_resize.jpg?v=1722919442",
       "title": "Michal Wood",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id":3,
+      "id": 3,
       "link": "/",
       "image": "https://ftabody.s3.us-west-1.amazonaws.com/jackwade_profile_resize.jpg?v=1722919442",
       "title": "Jack Wade",
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id":4,
+      "id": 4,
       "link": "/",
       "image": "https://ftabody.s3.us-west-1.amazonaws.com/fergusdevis_profile_resize.jpg?v=1722923600",
       "title": "Fergus Devis",
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id":5,
+      "id": 5,
       "link": "/",
       "image": "https://ftabody.s3.us-west-1.amazonaws.com/gabrielclay_profile_resize.jpg?v=1722923600",
       "title": "Gabriel Clay",
