@@ -704,27 +704,6 @@ html body .owl-carousel {
   position: relative;
 }
 
-/* .owl-carousel .owl-stage-outer {
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-} */
-
-/* .owl-carousel .owl-stage {
-  position: relative;
-  -ms-touch-action: pan-Y;
-  touch-action: manipulation;
-  visibility: hidden;
-} */
-
-/* .owl-carousel .owl-stage:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-} */
 .owl-carousel.owl-drag .owl-item {
   -ms-touch-action: pan-y;
   touch-action: pan-y;
@@ -791,7 +770,6 @@ div#over_100k_women .owl-item .blog-card.item .thum-blog img {
   transition: all 0.5s;
   display: block;
   width: 100%;
-
 }
 
 .owl-carousel .owl-item:hover img {
@@ -807,6 +785,7 @@ div#over_100k_women .owl-item .blog-card.item .thum-blog img {
   padding-bottom: 5px; 
   font-weight: 700;
   margin: 0px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .list-thum h4 a {
@@ -816,7 +795,7 @@ div#over_100k_women .owl-item .blog-card.item .thum-blog img {
 
 .inn-box-blo p {
   font-size: 16px;
-  /* font-family: "Open sans"; */
+  font-family: "Open sans";
   margin: 0px;
   padding: 0px;
 }
@@ -836,6 +815,7 @@ div#over_100k_women .owl-item .blog-card.item .thum-blog img {
   padding-top: 2px;
   font-weight: 700;
   margin: 0px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .inn-box-blo h6 span {
@@ -1096,6 +1076,22 @@ h3 span {
   opacity: 1 !important;
   display: block !important;
 }
+.fta-spon-top{
+  margin-top: -10px;
+  text-align: center;
+}
+img {
+  max-width: 100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+.swal2-title {
+  font-family: "Open Sans", sans-serif !important;
+}
+div:where(.swal2-container) h2:where(.swal2-title) {
+  font-size: 1.875em !important;
+}
 @media (max-width: 1600px) {
   ul.list-fta-spon {
     max-width: 305px;
@@ -1149,7 +1145,6 @@ h3 span {
 }
 
 @media (max-width: 1200px) {
-
   h1,
   h2,
   .title {
@@ -1247,6 +1242,9 @@ h3 span {
   ul.list-fta-spon li {
     padding: 0px 15px;
   }
+  .fta-spon-top {
+    margin-top: 15px !important;
+}
 }
 
 @media (max-width: 768px) {
@@ -1358,7 +1356,9 @@ h3 span {
   .owl_slider_main {
     padding: 0px !important;
   }
-
+  .fta-spon-top {
+    margin-top: 20px !important;
+}
 }
 
 @media (max-width: 480px) {
@@ -1416,4 +1416,7 @@ h3 span {
   ul.list-fta-spon li {
     padding: 5px;
   }
+  .fta-spon-top {
+    margin: 15px !important;
+}
 }

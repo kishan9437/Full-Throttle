@@ -10,18 +10,19 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import business from '../assest/images/business.jpg';
 import merch from '../assest/images/merch.jpg';
 import throtle from '../assest/images/throtle.jpg';
+import MerchClothing from '../assest/images/merch_clothing_FTA.png';
 import Swal from 'sweetalert2';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 
 
 
-function useDisplay(initialDisplay = 'block') {
-  const [display, setDisplay] = useState(initialDisplay);
-  const toggleDisplay = () => {
-    setDisplay(prevDisplay => (prevDisplay === 'none' ? initialDisplay : 'none'));
-  };
-  return [display, toggleDisplay];
-}
+// function useDisplay(initialDisplay = 'block') {
+//   const [display, setDisplay] = useState(initialDisplay);
+//   const toggleDisplay = () => {
+//     setDisplay(prevDisplay => (prevDisplay === 'none' ? initialDisplay : 'none'));
+//   };
+//   return [display, toggleDisplay];
+// }
 
 const DisplayToggleComponent = ({ isVisible, children }) => {
   return (
@@ -34,10 +35,11 @@ export default function SectionRocAbs() {
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
   const carouselRef = useRef(null);
+  const carouselRef2 = useRef(null);
   const [searchQuery, setSearchQuery] = useState('')
   const [highlightedItems, setHighlightedItems] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
+  // const [isVisible, setIsVisible] = useState(true);
   const [visibleCardIndex, setVisibleCardIndex] = useState(null);
 
 
@@ -77,8 +79,7 @@ export default function SectionRocAbs() {
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value.toLowerCase().trim());
   };
-  const handleSearchClick = (e) => {
-
+  const handleSearchClick = () => {
     if (!searchQuery) {
       Swal.fire({
         text: "Please enter bodybuilder name.",
@@ -89,34 +90,44 @@ export default function SectionRocAbs() {
       return;
     }
 
-    const over100kFound=data1.filter((item) => item.name.toLowerCase().includes(searchQuery));
-    const under100kFound=data2.filter((item) => item.name.toLowerCase().includes(searchQuery));
+    const over100kFound = data1.filter((item) => item.name.toLowerCase().includes(searchQuery));
+    const under100kFound = data2.filter((item) => item.name.toLowerCase().includes(searchQuery));
 
-    setHighlightedItems([...over100kFound,...under100kFound]);
+    setHighlightedItems([...over100kFound, ...under100kFound]);
 
-    if(over100kFound.length>0 && under100kFound.length>0) {
+    if (over100kFound.length > 0 && under100kFound.length > 0) {
       setSearchResult('found_in_both')
     }
-    else if(over100kFound.length>0 ){
+    else if (over100kFound.length > 0) {
       setSearchResult('found_in_over_100k')
     }
-    else if(under100kFound.length>0 ){
+    else if (under100kFound.length > 0) {
       setSearchResult('found_in_under_100k')
     }
-    else{
+    else {
       setSearchResult('not_found')
     }
   };
 
-  const prevSlide = () => {
+  const prevSlide = (carouselRef) => {
     carouselRef.current.prev();
   }
-  const nextSlide = () => {
+  const nextSlide = (carouselRef) => {
     carouselRef.current.next();
   }
 
   const handleToggleClick = (index) => {
     setVisibleCardIndex(prevIndex => prevIndex ? null : index);
+  }
+
+  const handleLikeClick = () => {
+    Swal.fire({
+      title: 'Login Required!',
+      html: 'Please <a href="">login</a> to <span class="actiontext">Vote</span>. If you do not have an account please <a href="">create an account</a>.',
+      icon: 'info',
+      confirmButtonColor:'rgb(37, 37, 37)',
+      confirmButtonText: 'Skip',
+    });
   }
   return (
     <>
@@ -138,11 +149,11 @@ export default function SectionRocAbs() {
               {searchResult === 'found_in_under_100k' && (
                 <p id='men_sliderResOver'>Result(s) found in Under 100k Votes</p>
               )}
-              {searchResult=== 'found_in_both' && (
+              {searchResult === 'found_in_both' && (
                 <p id='men_sliderResOver'>Result(s) found in both Over 100k Votes and Under 100k Votes</p>
               )}
               {searchResult === 'not_found' && (
-                <p id='men_sliderResOver'><span style={{color:'red'}}>No Match Found</span></p>
+                <p id='men_sliderResOver'><span style={{ color: 'red' }}>No Match Found</span></p>
               )}
             </div>
 
@@ -153,9 +164,9 @@ export default function SectionRocAbs() {
             </h3>
 
             <div className='scroll-div'>
-              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide} />
+              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={() => prevSlide(carouselRef)} />
               <span class="scroll-text">Scroll</span>
-              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide} />
+              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={() => nextSlide(carouselRef)} />
             </div>
 
             {/* over 100k votes */}
@@ -170,7 +181,7 @@ export default function SectionRocAbs() {
                     }} ref={carouselRef}>
                       {data1.map((item, index) => (
                         // console.log('filter item : ',item),
-                        <div key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.some((highlighted)=>highlighted.name === item.name) ? 'highlight' : ''}`}>
+                        <div key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
                           <div className='thum-blog'>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title} />
@@ -190,7 +201,7 @@ export default function SectionRocAbs() {
                             </h6>
                             <div className='row-vote'>
                               Click here to vote for me
-                              <Link to={'/'} title='Vote' className='icon-like votes_like login-action'>
+                              <Link to={'/'} title='Vote' className='icon-like votes_like login-action' onClick={handleLikeClick}>
                                 <svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" height="25px" width="25px" y="0px" x="0px" id="Layer_1" version="1.1" >
                                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
                                     <path fill="#BABCBE" d="M2890,5106.003c-110-31.006-215-114.004-275.996-220c-20-32.002-104.004-240-189.004-461.006   C2341,4204.001,2260,3996.003,2246,3963.005c-102.002-243.008-367.002-542.002-748.003-846.006L1370,3014.998V1644.002V273.006   l135-42.002C1815,134.002,2162.998,62,2505,24.002c227.002-25.996,1717.998-32.998,1820-9.004   c170.996,39.004,317.998,172.002,382.998,345c39.004,103.008,31.006,270-18.994,378.008   c-28.008,62.998-29.004,66.992-12.002,78.994c107.002,71.006,177.001,142.998,220.996,227.998   c74.004,146.006,69.004,352.002-12.002,492.002l-23.994,42.002l52.998,42.002c147.002,117.002,222.998,307.998,195.996,490   c-20,135-120.996,295.996-222.998,357.002l-27.002,15l29.004,55.996c60.996,120.996,77.002,260.996,45,385.996   c-42.998,164.004-190,314.004-365,371.006c-50,15.996-112.002,17.998-655.996,22.002l-601.006,2.998l24.004,117.002   c30.996,153.994,87.998,497.998,105,636.992C3449.003,4137,3455,4287,3455,4419.998c-0.996,211.006-2.998,244.004-22.998,325   c-30,118.008-61.006,183.008-112.998,240C3220.996,5091.003,3030,5144.998,2890,5106.003z"></path>
@@ -244,18 +255,18 @@ export default function SectionRocAbs() {
                     <span>Vote for anyone you feel has what it takes to go viral</span>
                   </h3>
                   <div className='scroll-div'>
-                    <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' />
+                    <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={() => prevSlide(carouselRef2)} />
                     <span class="scroll-text">Scroll</span>
-                    <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' />
+                    <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={() => nextSlide(carouselRef2)} />
                   </div>
                   <Col md={12} className='male-carousel' id='under_100k_man'>
                     <OwlCarousel className='owl-theme list-thum red-b-bottom owl-loaded' margin={8} items={3} nav responsive={{
                       0: { items: 1, loop: true },
                       600: { items: 3, loop: true },
                       1000: { items: 4, loop: false }
-                    }} >
+                    }} ref={carouselRef2}>
                       {data2.map((item, index) => (
-                        <div key={item.id} className={`blog-card item men_sliderUnder object-square ${highlightedItems.some((highlighted)=>highlighted.name === item.name) ? 'highlight':''}`}>
+                        <div key={item.id} className={`blog-card item men_sliderUnder object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
                           <div className='thum-blog'>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title}></img>
@@ -275,7 +286,7 @@ export default function SectionRocAbs() {
                             </h6>
                             <div className='row-vote'>
                               Click here to vote for me
-                              <Link to={'/'} title='Vote' className='icon-like votes_like login-action'>
+                              <Link to={'/'} title='Vote' className='icon-like votes_like login-action' onClick={handleLikeClick}>
                                 <svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" height="25px" width="25px" y="0px" x="0px" id="Layer_1" version="1.1" >
                                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
                                     <path fill="#BABCBE" d="M2890,5106.003c-110-31.006-215-114.004-275.996-220c-20-32.002-104.004-240-189.004-461.006   C2341,4204.001,2260,3996.003,2246,3963.005c-102.002-243.008-367.002-542.002-748.003-846.006L1370,3014.998V1644.002V273.006   l135-42.002C1815,134.002,2162.998,62,2505,24.002c227.002-25.996,1717.998-32.998,1820-9.004   c170.996,39.004,317.998,172.002,382.998,345c39.004,103.008,31.006,270-18.994,378.008   c-28.008,62.998-29.004,66.992-12.002,78.994c107.002,71.006,177.001,142.998,220.996,227.998   c74.004,146.006,69.004,352.002-12.002,492.002l-23.994,42.002l52.998,42.002c147.002,117.002,222.998,307.998,195.996,490   c-20,135-120.996,295.996-222.998,357.002l-27.002,15l29.004,55.996c60.996,120.996,77.002,260.996,45,385.996   c-42.998,164.004-190,314.004-365,371.006c-50,15.996-112.002,17.998-655.996,22.002l-601.006,2.998l24.004,117.002   c30.996,153.994,87.998,497.998,105,636.992C3449.003,4137,3455,4287,3455,4419.998c-0.996,211.006-2.998,244.004-22.998,325   c-30,118.008-61.006,183.008-112.998,240C3220.996,5091.003,3030,5144.998,2890,5106.003z"></path>
@@ -313,7 +324,12 @@ export default function SectionRocAbs() {
                   </ul>
                 </div>
               </Col>
-            </Row >
+            </Row>
+            <div className='fta-spon-top'>
+              <Link to={''}>
+                <img src={MerchClothing} alt='FTA Sponser' title=''></img>
+              </Link>
+            </div>
           </Row>
         </Container>
       </section>
