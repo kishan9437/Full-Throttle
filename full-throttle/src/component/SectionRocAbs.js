@@ -131,7 +131,7 @@ export default function SectionRocAbs() {
   }
   return (
     <>
-      <section className='sec-roc-abs'>
+      <section className='sec-roc-abs mens'>
         <Container>
           <Row>
             <h2 className='women-rock-heading title'>Rock Those ABS</h2>

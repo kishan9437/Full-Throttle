@@ -5,12 +5,7 @@ import { Link } from 'react-router-dom'
 import abfeans from '../assest/images/abfeans.png';
 import { Modal, Button } from 'react-bootstrap'
 
-export default function AbfeansSection() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+export default function AbfeansSection({show,handleClose,handleShow}) {
     return (
         <>
             {/* Ab Feans Section */}

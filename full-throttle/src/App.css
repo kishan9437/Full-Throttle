@@ -1092,6 +1092,14 @@ img {
 div:where(.swal2-container) h2:where(.swal2-title) {
   font-size: 1.875em !important;
 }
+
+/* glute feans section */
+section.sec-hero.ass-feans{
+  background: #5fc5b8;
+}
+section.sec-hero.ass-feans h2 {
+  color: #fff;
+}
 @media (max-width: 1600px) {
   ul.list-fta-spon {
     max-width: 305px;
