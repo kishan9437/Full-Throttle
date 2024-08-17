@@ -1,0 +1,309 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/feature-profile-image/d67d8ab4f4c10bf22aa353e27879133c_featured_profile_pic.jpg?v=1723788264",
+            "title": "Lucy Boutin",
+            "name": "Lucy Boutin",
+            "rank": "#1",
+            "votes": "104,087",
+            "nft_collectibles": [
+                {
+                    "limited_addition": "1 / 10",
+                    "price": "$5000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "2 / 10",
+                    "price": "$5500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "3 / 10",
+                    "price": "$6000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "4 / 10",
+                    "price": "$6500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "5 / 10",
+                    "price": "$7000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "6 / 10",
+                    "price": "$7500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "7 / 10",
+                    "price": "$8000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "8 / 10",
+                    "price": "$8500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "9 / 10",
+                    "price": "$9000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "10 / 10",
+                    "price": "$9500",
+                    "availability": "Available"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/feature-profile-image/02e74f10e0327ad868d138f2b4fdd6f0_featured_profile_pic.jpg?v=1723788264",
+            "title": "Molly Powell",
+            "name": "Molly Powell",
+            "rank": "#2",
+            "votes": "103,895",
+            "nft_collectibles": [
+                {
+                    "limited_addition": "1 / 10",
+                    "price": "$5000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "2 / 10",
+                    "price": "$5500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "3 / 10",
+                    "price": "$6000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "4 / 10",
+                    "price": "$6500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "5 / 10",
+                    "price": "$7000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "6 / 10",
+                    "price": "$7500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "7 / 10",
+                    "price": "$8000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "8 / 10",
+                    "price": "$8500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "9 / 10",
+                    "price": "$9000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "10 / 10",
+                    "price": "$9500",
+                    "availability": "Available"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/feature-profile-image/1ff1de774005f8da13f42943881c655f_featured_profile_pic.jpg?v=1723788264",
+            "title": "Maya Anderson",
+            "name": "Maya Anderson",
+            "rank": "#3",
+            "votes": "100,316",
+            "nft_collectibles": [
+                {
+                    "limited_addition": "1 / 10",
+                    "price": "$5000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "2 / 10",
+                    "price": "$5500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "3 / 10",
+                    "price": "$6000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "4 / 10",
+                    "price": "$6500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "5 / 10",
+                    "price": "$7000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "6 / 10",
+                    "price": "$7500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "7 / 10",
+                    "price": "$8000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "8 / 10",
+                    "price": "$8500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "9 / 10",
+                    "price": "$9000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "10 / 10",
+                    "price": "$9500",
+                    "availability": "Available"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/feature-profile-image/b6d767d2f8ed5d21a44b0e5886680cb9_featured_profile_pic.jpg?v=1723788264",
+            "title": "Amy Leone",
+            "name": "Amy Leone",
+            "rank": "#4",
+            "votes": "100,306",
+            "nft_collectibles": [
+                {
+                    "limited_addition": "1 / 10",
+                    "price": "$5000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "2 / 10",
+                    "price": "$5500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "3 / 10",
+                    "price": "$6000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "4 / 10",
+                    "price": "$6500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "5 / 10",
+                    "price": "$7000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "6 / 10",
+                    "price": "$7500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "7 / 10",
+                    "price": "$8000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "8 / 10",
+                    "price": "$8500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "9 / 10",
+                    "price": "$9000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "10 / 10",
+                    "price": "$9500",
+                    "availability": "Available"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "link": "/",
+            "image": "https://ftabody.s3.us-west-1.amazonaws.com/feature-profile-image/1c383cd30b7c298ab50293adfecb7b18_featured_profile_pic.jpg?v=1723788264",
+            "title": "Gemma Wood",
+            "name": "Gemma Wood",
+            "rank": "#5",
+            "votes": "100,098",
+            "nft_collectibles": [
+                {
+                    "limited_addition": "1 / 10",
+                    "price": "$5000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "2 / 10",
+                    "price": "$5500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "3 / 10",
+                    "price": "$6000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "4 / 10",
+                    "price": "$6500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "5 / 10",
+                    "price": "$7000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "6 / 10",
+                    "price": "$7500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "7 / 10",
+                    "price": "$8000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "8 / 10",
+                    "price": "$8500",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "9 / 10",
+                    "price": "$9000",
+                    "availability": "SOLD"
+                },
+                {
+                    "limited_addition": "10 / 10",
+                    "price": "$9500",
+                    "availability": "Available"
+                }
+            ]
+        }
+    ]
+}

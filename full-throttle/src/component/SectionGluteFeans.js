@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 import glutefeans from '../assest/images/GLUTE-FEANS.webp';
 
 export default function SectionGluteFeans({handleShow}) {
-  // const [show, setShow] = useState(false);
-
-  // const handleClose=()=>setShow(false);
-  // const handleShow=()=>setShow(true);
   return (
     <>
       <section className='sec-hero ass-feans'>

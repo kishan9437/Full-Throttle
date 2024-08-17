@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap'
 import AbfeansSection from '../component/AbfeansSection'
 import SectionRocAbs from '../component/SectionRocAbs'
 import SectionGluteFeans from '../component/SectionGluteFeans'
+import SectionRocAbsWomen from '../component/SectionRocAbsWomen'
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ export default function Home() {
             <AbfeansSection show={show} handleClose={handleClose} handleShow={handleShow}/>
             <SectionRocAbs />
             <SectionGluteFeans handleShow={handleShow} handleClose={handleClose}/>
+            <SectionRocAbsWomen />
           </Container>
         </div>
       </article>

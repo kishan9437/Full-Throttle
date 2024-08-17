@@ -43,7 +43,6 @@ export default function AbfeansSection({show,handleClose,handleShow}) {
                     <p><Link to={'/'}>Click here</Link> to learn more.</p>
                 </Modal.Body>
             </Modal>
-
         </>
     )
 }

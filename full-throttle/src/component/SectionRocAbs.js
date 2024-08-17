@@ -42,29 +42,29 @@ export default function SectionRocAbs() {
   // const [isVisible, setIsVisible] = useState(true);
   const [visibleCardIndex, setVisibleCardIndex] = useState(null);
 
+  const fetchData1 = async () => {
+    try {
+      const response = await fetch('data100kOver.json');
+      const result = await response.json();
+      setData1(result.items);
+    }
+    catch (error) {
+      console.error('Error fetching data first Json', error)
+    }
+  };
 
+  const fetchData2 = async () => {
+    try {
+      const response = await fetch('data100kUnder.json');
+      const result = await response.json();
+      setData2(result.items);
+    }
+    catch (error) {
+      console.error('Error fetching data second Json', error)
+    }
+  };
+  
   useEffect(() => {
-    const fetchData1 = async () => {
-      try {
-        const response = await fetch('data100kOver.json');
-        const result = await response.json();
-        setData1(result.items);
-      }
-      catch (error) {
-        console.error('Error fetching data first Json', error)
-      }
-    };
-
-    const fetchData2 = async () => {
-      try {
-        const response = await fetch('data100kUnder.json');
-        const result = await response.json();
-        setData2(result.items);
-      }
-      catch (error) {
-        console.error('Error fetching data second Json', error)
-      }
-    };
     fetchData1();
     fetchData2();
   }, [])
@@ -294,7 +294,6 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-
                           </div>
                         </div>
                       ))}
