@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Children } from 'react'
-import { Container, Row, Col, Table } from 'react-bootstrap'
+import { Container, Row, Col, Table, Pagination } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
@@ -12,7 +12,11 @@ import merch from '../assest/images/merch.jpg';
 import throtle from '../assest/images/throtle.jpg';
 import MerchClothing from '../assest/images/merch_clothing_FTA.png';
 import Swal from 'sweetalert2';
-// import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/swiper-bundle.css'; // Import Swiper styles
+
 
 
 
@@ -24,13 +28,13 @@ import Swal from 'sweetalert2';
 //   return [display, toggleDisplay];
 // }
 
-const DisplayToggleComponent = ({ isVisible, children }) => {
-  return (
-    <div style={{ display: isVisible ? 'block' : 'none' }}>
-      {children}
-    </div>
-  );
-}
+// const DisplayToggleComponent = ({ isVisible, children }) => {
+//   return (
+//     <div style={{ display: isVisible ? 'block' : 'none' }}>
+//       {children}
+//     </div>
+//   );
+// }
 export default function SectionRocAbs() {
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
@@ -39,8 +43,9 @@ export default function SectionRocAbs() {
   const [searchQuery, setSearchQuery] = useState('')
   const [highlightedItems, setHighlightedItems] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
+  const [isTableOpen, setIsTableOpen] = useState(false);
   // const [isVisible, setIsVisible] = useState(true);
-  const [visibleCardIndex, setVisibleCardIndex] = useState(null);
+  // const [visibleCardIndex, setVisibleCardIndex] = useState(null);
 
   const fetchData1 = async () => {
     try {
@@ -63,7 +68,7 @@ export default function SectionRocAbs() {
       console.error('Error fetching data second Json', error)
     }
   };
-  
+
   useEffect(() => {
     fetchData1();
     fetchData2();
@@ -109,23 +114,28 @@ export default function SectionRocAbs() {
     }
   };
 
-  const prevSlide = (carouselRef) => {
-    carouselRef.current.prev();
+  const prevSlide = () => {
+    if (carouselRef.current) {
+      carouselRef.current.slidePrev();
+    }
   }
-  const nextSlide = (carouselRef) => {
-    carouselRef.current.next();
+  const nextSlide = () => {
+    if (carouselRef.current) {
+      carouselRef.current.slideNext();
+    }
   }
 
-  const handleToggleClick = (index) => {
-    setVisibleCardIndex(prevIndex => prevIndex ? null : index);
-  }
+  const toggleTable = () => {
+    setIsTableOpen(!isTableOpen);
+  };
+
 
   const handleLikeClick = () => {
     Swal.fire({
       title: 'Login Required!',
       html: 'Please <a href="">login</a> to <span class="actiontext">Vote</span>. If you do not have an account please <a href="">create an account</a>.',
       icon: 'info',
-      confirmButtonColor:'rgb(37, 37, 37)',
+      confirmButtonColor: 'rgb(37, 37, 37)',
       confirmButtonText: 'Skip',
     });
   }
@@ -164,9 +174,9 @@ export default function SectionRocAbs() {
             </h3>
 
             <div className='scroll-div'>
-              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={() => prevSlide(carouselRef)} />
+              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide} />
               <span class="scroll-text">Scroll</span>
-              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={() => nextSlide(carouselRef)} />
+              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide} />
             </div>
 
             {/* over 100k votes */}
@@ -174,15 +184,32 @@ export default function SectionRocAbs() {
               <Col xs={12} sm={12} md={12} lg={9} xl={9} className='owl_slider_main'>
                 <div className='ove-100k-men-wrap'>
                   <Col md={12} className='male-carousel' id='over_100k_man'>
-                    <OwlCarousel className='owl-theme list-thum red-b-bottom' margin={8} items={3} nav responsive={{
+                    {/* <OwlCarousel className='owl-theme list-thum red-b-bottom' margin={8} items={3} nav responsive={{
                       0: { items: 1, loop: true },
                       600: { items: 3, loop: true },
                       1000: { items: 3, loop: false }
-                    }} ref={carouselRef}>
+                    }} ref={carouselRef}> */}
+                    <Swiper
+                      modules={[Navigation]}
+                      id='over_100k_man'
+                      className='list-thum red-b-bottom'
+                      spaceBetween={8}
+                      slidesPerView={3}
+                      navigation={true}
+                      onSwiper={(swiper) => {
+                        carouselRef.current = swiper; // Set the swiper instance to the ref
+                      }}
+                      // ref={carouselRef}
+                      breakpoints={{
+                        0: { slidesPerView: 1, loop: true },
+                        600: { slidesPerView: 3, loop: true },
+                        1000: { slidesPerView: 3, loop: false }
+                      }}
+                    >
                       {data1.map((item, index) => (
                         // console.log('filter item : ',item),
-                        <div key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
-                          <div className='thum-blog'>
+                        <SwiperSlide key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`} >
+                          <div className='thum-blog '>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title} />
                             </Link>
@@ -209,12 +236,12 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={() => handleToggleClick(index)}>
+                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={toggleTable}>
                               NFT Collectibles
                             </Link>
-                            <DisplayToggleComponent isVisible={visibleCardIndex === index}>
-                              {/* <p>this content will be toggle</p> */}
-
+                            {/* <DisplayToggleComponent isVisible={visibleCardIndex === index}>
+                              <p>this content will be toggle</p> */}
+                            <CSSTransition in={isTableOpen} timeout={300} classNames="slide" unmountOnExit>
                               <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
                                 <thead>
                                   <tr className='warning'>
@@ -241,11 +268,15 @@ export default function SectionRocAbs() {
                                   ))}
                                 </tbody>
                               </Table>
-                            </DisplayToggleComponent>
+                            </CSSTransition>
+
+                            {/* </DisplayToggleComponent> */}
                           </div>
-                        </div>
+                        </SwiperSlide>
                       ))}
-                    </OwlCarousel>
+
+                    </Swiper>
+                    {/* </OwlCarousel> */}
                   </Col>
                 </div>
                 <div className='under-100k-men-wrap'>

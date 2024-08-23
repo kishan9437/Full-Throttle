@@ -704,12 +704,70 @@ html body .owl-carousel {
   width: 100%;
   font-size: 16px;
   text-align: center;
-  padding-bottom: 22px;
+  padding-bottom: 22px !important;
   display: inline-block;
 }
 .under-100k-women .owl-carousel.list-thum{
   padding-bottom: 0px !important;
 }
+.swiper{
+  display: none;
+  width: 100%;
+}
+/* .swiper .swiper-wrapper{
+  position: relative;
+  overflow: hidden;
+} */
+div#over_100k_man .swiper-wrapper .blog-card.item,
+div#over_100k_women .swiper-wrapper .blog-card.item {
+  background: #efebf5;
+  padding-bottom: 15px;
+  border: 0px;
+  border-radius: 8px;
+  overflow: hidden;
+  border-style: double;
+} 
+div#over_100k_man .swiper-wrapper .blog-card.item:hover,
+div#over_100k_women .swiper-wrapper .blog-card.item:hover {
+  background: #e1dbed;
+}
+
+div#over_100k_man .swiper-wrapper .blog-card.item .thum-blog,
+div#over_100k_women .swiper-wrapper .blog-card.item .thum-blog {
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 5px;
+  background: #58379a;
+} 
+div#over_100k_man .swiper-wrapper .blog-card.item .thum-blog img,
+div#over_100k_women .swiper-wrapper .blog-card.item .thum-blog img {
+  border-radius: 4px;
+}
+.swiper .swiper-slide img {
+  object-fit: cover;
+  transition: all 0.5s;
+  display: block;
+  width: 100%;
+}
+.swiper .swiper-slide:hover img {
+  transform: scale(1.1);
+}
+/* .slide-enter {
+  max-height: 0;
+  overflow: hidden;
+}
+.slide-enter-active {
+  max-height: 1000px; 
+  transition: max-height 9s ease-in;
+}
+.slide-exit {
+  max-height: 1000px; 
+}
+.slide-exit-active {
+  max-height: 0;
+  transition: max-height 9s ease-in;
+} */
+
 .owl-carousel {
   display: none;
   width: 100%;
@@ -765,14 +823,6 @@ div#over_100k_women .owl-item .blog-card.item:hover {
   font-weight: 700;
 }
 
-div#over_100k_man .owl-item .blog-card.item .thum-blog,
-div#over_100k_women .owl-item .blog-card.item .thum-blog {
-  overflow: hidden;
-  border-radius: 8px;
-  padding: 5px;
-  background: #58379a;
-}
-
 .thum-blog {
   overflow: hidden;
   margin-bottom: 12px;
@@ -792,6 +842,30 @@ div#over_100k_women .owl-item .blog-card.item .thum-blog img {
 
 .owl-carousel .owl-item:hover img {
   transform: scale(1.1);
+}
+html body .swiper .swiper-button-prev,
+html body .swiper .swiper-button-next {
+  top: 121px;
+  width: 16px;
+  height: 84px;
+  margin-top: 6px;
+  box-shadow: none;
+  position: absolute;
+  opacity: 1;
+}
+
+/* html body .swiper .swiper-button-prev,
+html body .swiper .swiper-button-prev:hover {
+  left: -24px;
+  z-index: 2;
+
+  /* background: url(../src/assest/images/icon-arrow.png) no-repeat left top; 
+} */
+
+html body .owl-carousel .owl-nav .owl-next,
+html body .owl-carousel .owl-nav .owl-next:hover {
+  right: -24px;
+  background: url(../src/assest/images/icon-arrow.png) no-repeat right top;
 }
 
 .inn-box-blo {
@@ -896,26 +970,6 @@ a.icon-like.votes_like svg {
 }
 
 /* CSS for slide-up and slide-down animations */
-.fade-enter {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.fade-enter-active {
-  max-height: 500px;
-  /* Adjust this value based on your content */
-  transition: max-height 300ms ease-in-out;
-}
-
-.fade-exit {
-  max-height: 500px;
-  /* Adjust this value based on your content */
-}
-
-.fade-exit-active {
-  max-height: 0;
-  transition: max-height 300ms ease-in-out;
-}
 
 table.table.table-striped.table-bordered.nef_collection {
   position: relative;
