@@ -19,22 +19,6 @@ import 'swiper/swiper-bundle.css'; // Import Swiper styles
 
 
 
-
-// function useDisplay(initialDisplay = 'block') {
-//   const [display, setDisplay] = useState(initialDisplay);
-//   const toggleDisplay = () => {
-//     setDisplay(prevDisplay => (prevDisplay === 'none' ? initialDisplay : 'none'));
-//   };
-//   return [display, toggleDisplay];
-// }
-
-// const DisplayToggleComponent = ({ isVisible, children }) => {
-//   return (
-//     <div style={{ display: isVisible ? 'block' : 'none' }}>
-//       {children}
-//     </div>
-//   );
-// }
 export default function SectionRocAbs() {
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
@@ -43,9 +27,7 @@ export default function SectionRocAbs() {
   const [searchQuery, setSearchQuery] = useState('')
   const [highlightedItems, setHighlightedItems] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
-  const [isTableOpen, setIsTableOpen] = useState(false);
-  // const [isVisible, setIsVisible] = useState(true);
-  // const [visibleCardIndex, setVisibleCardIndex] = useState(null);
+  const [isTableOpen, setIsTableOpen] = useState(null);
 
   const fetchData1 = async () => {
     try {
@@ -125,8 +107,8 @@ export default function SectionRocAbs() {
     }
   }
 
-  const toggleTable = () => {
-    setIsTableOpen(!isTableOpen);
+  const toggleTable = (id) => {
+    setIsTableOpen(prevId => prevId === id ? null : id);
   };
 
 
@@ -184,11 +166,6 @@ export default function SectionRocAbs() {
               <Col xs={12} sm={12} md={12} lg={9} xl={9} className='owl_slider_main'>
                 <div className='ove-100k-men-wrap'>
                   <Col md={12} className='male-carousel' id='over_100k_man'>
-                    {/* <OwlCarousel className='owl-theme list-thum red-b-bottom' margin={8} items={3} nav responsive={{
-                      0: { items: 1, loop: true },
-                      600: { items: 3, loop: true },
-                      1000: { items: 3, loop: false }
-                    }} ref={carouselRef}> */}
                     <Swiper
                       modules={[Navigation]}
                       id='over_100k_man'
@@ -197,9 +174,8 @@ export default function SectionRocAbs() {
                       slidesPerView={3}
                       navigation={true}
                       onSwiper={(swiper) => {
-                        carouselRef.current = swiper; // Set the swiper instance to the ref
+                        carouselRef.current = swiper; 
                       }}
-                      // ref={carouselRef}
                       breakpoints={{
                         0: { slidesPerView: 1, loop: true },
                         600: { slidesPerView: 3, loop: true },
@@ -207,7 +183,6 @@ export default function SectionRocAbs() {
                       }}
                     >
                       {data1.map((item, index) => (
-                        // console.log('filter item : ',item),
                         <SwiperSlide key={item.id} className={`blog-card item men_sliderOver object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`} >
                           <div className='thum-blog '>
                             <Link to={item.link}>
@@ -236,12 +211,10 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={toggleTable}>
+                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={()=>toggleTable(item.id)}>
                               NFT Collectibles
                             </Link>
-                            {/* <DisplayToggleComponent isVisible={visibleCardIndex === index}>
-                              <p>this content will be toggle</p> */}
-                            <CSSTransition in={isTableOpen} timeout={300} classNames="slide" unmountOnExit>
+                            <CSSTransition in={isTableOpen===item.id} timeout={300} classNames="slide" unmountOnExit>
                               <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
                                 <thead>
                                   <tr className='warning'>
@@ -270,7 +243,6 @@ export default function SectionRocAbs() {
                               </Table>
                             </CSSTransition>
 
-                            {/* </DisplayToggleComponent> */}
                           </div>
                         </SwiperSlide>
                       ))}
