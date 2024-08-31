@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useRef, Children } from 'react'
-import { Container, Row, Col, Table, Pagination } from 'react-bootstrap'
+import React, { useState, useEffect, useRef } from 'react'
+import { Container, Row, Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft, faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import OwlCarousel from 'react-owl-carousel'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel/dist/assets/owl.theme.default.css';
 import business from '../assest/images/business.jpg';
 import merch from '../assest/images/merch.jpg';
 import throtle from '../assest/images/throtle.jpg';
@@ -15,14 +11,14 @@ import Swal from 'sweetalert2';
 import { CSSTransition } from 'react-transition-group';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import 'swiper/swiper-bundle.css'; // Import Swiper styles
+import 'swiper/swiper-bundle.css';
 
 
 
 export default function SectionRocAbs() {
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
-  const carouselRef = useRef(null);
+  const carouselRef1 = useRef(null);
   const carouselRef2 = useRef(null);
   const [searchQuery, setSearchQuery] = useState('')
   const [highlightedItems, setHighlightedItems] = useState([]);
@@ -96,14 +92,25 @@ export default function SectionRocAbs() {
     }
   };
 
-  const prevSlide = () => {
-    if (carouselRef.current) {
-      carouselRef.current.slidePrev();
+  const prevSlide1 = () => {
+    if (carouselRef1.current) {
+      carouselRef1.current.slidePrev();
     }
   }
-  const nextSlide = () => {
-    if (carouselRef.current) {
-      carouselRef.current.slideNext();
+  const nextSlide1 = () => {
+    if (carouselRef1.current) {
+      carouselRef1.current.slideNext();
+    }
+  }
+
+  const prevSlide2 = () => {
+    if (carouselRef2.current) {
+      carouselRef2.current.slidePrev();
+    }
+  }
+  const nextSlide2 = () => {
+    if (carouselRef2.current) {
+      carouselRef2.current.slideNext();
     }
   }
 
@@ -156,9 +163,9 @@ export default function SectionRocAbs() {
             </h3>
 
             <div className='scroll-div'>
-              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide} />
+              <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide1} />
               <span class="scroll-text">Scroll</span>
-              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide} />
+              <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide1} />
             </div>
 
             {/* over 100k votes */}
@@ -174,7 +181,7 @@ export default function SectionRocAbs() {
                       slidesPerView={3}
                       navigation={true}
                       onSwiper={(swiper) => {
-                        carouselRef.current = swiper; 
+                        carouselRef1.current = swiper;
                       }}
                       breakpoints={{
                         0: { slidesPerView: 1, loop: true },
@@ -211,10 +218,10 @@ export default function SectionRocAbs() {
                                   </g></svg>
                               </Link>
                             </div>
-                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={()=>toggleTable(item.id)}>
+                            <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={() => toggleTable(item.id)}>
                               NFT Collectibles
                             </Link>
-                            <CSSTransition in={isTableOpen===item.id} timeout={300} classNames="slide" unmountOnExit>
+                            <CSSTransition in={isTableOpen === item.id} timeout={300} classNames="slide" unmountOnExit>
                               <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
                                 <thead>
                                   <tr className='warning'>
@@ -242,13 +249,10 @@ export default function SectionRocAbs() {
                                 </tbody>
                               </Table>
                             </CSSTransition>
-
                           </div>
                         </SwiperSlide>
                       ))}
-
                     </Swiper>
-                    {/* </OwlCarousel> */}
                   </Col>
                 </div>
                 <div className='under-100k-men-wrap'>
@@ -258,18 +262,29 @@ export default function SectionRocAbs() {
                     <span>Vote for anyone you feel has what it takes to go viral</span>
                   </h3>
                   <div className='scroll-div'>
-                    <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={() => prevSlide(carouselRef2)} />
+                    <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide2} />
                     <span class="scroll-text">Scroll</span>
-                    <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={() => nextSlide(carouselRef2)} />
+                    <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide2} />
                   </div>
                   <Col md={12} className='male-carousel' id='under_100k_man'>
-                    <OwlCarousel className='owl-theme list-thum red-b-bottom owl-loaded' margin={8} items={3} nav responsive={{
-                      0: { items: 1, loop: true },
-                      600: { items: 3, loop: true },
-                      1000: { items: 4, loop: false }
-                    }} ref={carouselRef2}>
+                    <Swiper
+                      modules={[Navigation]}
+                      id='over_100k_man'
+                      className='list-thum red-b-bottom'
+                      spaceBetween={8}
+                      slidesPerView={4}
+                      navigation={true}
+                      onSwiper={(swiper) => {
+                        carouselRef2.current = swiper;
+                      }}
+                      breakpoints={{
+                        0: { slidesPerView: 1, loop: true },
+                        600: { slidesPerView: 3, loop: true },
+                        1000: { slidesPerView: 4, loop: false }
+                      }}
+                    >
                       {data2.map((item, index) => (
-                        <div key={item.id} className={`blog-card item men_sliderUnder object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
+                        <SwiperSlide key={item.id} className={`blog-card item men_sliderUnder object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
                           <div className='thum-blog'>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title}></img>
@@ -298,10 +313,9 @@ export default function SectionRocAbs() {
                               </Link>
                             </div>
                           </div>
-                        </div>
+                        </SwiperSlide>
                       ))}
-
-                    </OwlCarousel>
+                      </Swiper>
                   </Col>
                 </div>
               </Col>

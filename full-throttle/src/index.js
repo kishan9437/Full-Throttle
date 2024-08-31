@@ -4,11 +4,6 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
-// import $ from 'jquery';
-// import './setupJquery';
-// import 'owl.carousel/dist/owl.carousel.min.js'; // Make sure to import Owl Carousel's JS if needed
-// import 'owl.carousel/dist/assets/owl.carousel.min.css'; // Import Owl Carousel's CSS
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

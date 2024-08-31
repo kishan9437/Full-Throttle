@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Container, Row, Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faLongArrowRight } from '@fortawesome/free-solid-svg-icons'
-import OwlCarousel from 'react-owl-carousel'
-import 'owl.carousel/dist/assets/owl.carousel.css'
-import 'owl.carousel/dist/assets/owl.theme.default.css'
 import { Link } from 'react-router-dom'
 import advertise from '../assest/images/advertise.jpg'
 import goviral from '../assest/images/goviral.jpg'
 import throtlealway from '../assest/images/throtlealway.jpg'
 import FTA from '../assest/images/FTA.jpg';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/swiper-bundle.css';
+import { CSSTransition } from 'react-transition-group';
 
 export default function SectionRocAbsWomen() {
     const [data1, setData1] = useState([])
     const [data2, setData2] = useState([])
+    const carouselRef1 = useRef(null)
+    const carouselRef2 = useRef(null)
+    const [isTableOpen1, setIsTableOpen1] = useState(null)
 
     const fetchData1 = async () => {
         try {
@@ -48,6 +52,33 @@ export default function SectionRocAbsWomen() {
     if (!data2) {
         return <div>Loading...</div>
     }
+
+    const prevSlide1 = () => {
+        if (carouselRef1.current) {
+            carouselRef1.current.slidePrev();
+        }
+    }
+    const nextSlide1 = () => {
+        if (carouselRef1.current) {
+            carouselRef1.current.slideNext();
+        }
+    }
+
+    const toggleTable1 = (id) => {
+        setIsTableOpen1(prevId => prevId === id ? null : id);
+    };
+
+    const prevSlide2 = () => {
+        if (carouselRef2.current) {
+            carouselRef2.current.slidePrev();
+        }
+    }
+    const nextSlide2 = () => {
+        if (carouselRef2.current) {
+            carouselRef2.current.slideNext();
+        }
+    }
+
     return (
         <>
             <section className='sec-roc-abs women'>
@@ -67,9 +98,9 @@ export default function SectionRocAbsWomen() {
                             100k votes
                         </h3>
                         <div className='scroll-div'>
-                            <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' />
+                            <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide1} />
                             <span class="scroll-text">Scroll</span>
-                            <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' />
+                            <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide1} />
                         </div>
 
                         {/* over 100k votes */}
@@ -77,14 +108,25 @@ export default function SectionRocAbsWomen() {
                             <Col xs={12} sm={12} md={12} lg={9} xl={9} className='owl_slider_main'>
                                 <div className='over-100k-women'>
                                     <Col md={12} className='male-carousel' id='over_100k_women'>
-                                        <OwlCarousel className='owl-theme list-thum red-b-bottom' margin={8} items={3} nav responsive={{
-                                            0: { items: 1, loop: true },
-                                            600: { items: 3, loop: true },
-                                            1000: { items: 3, loop: false }
-                                        }} >
+                                        <Swiper
+                                            modules={[Navigation]}
+                                            id='over_100k_man'
+                                            className='list-thum red-b-bottom'
+                                            spaceBetween={8}
+                                            slidesPerView={3}
+                                            navigation={true}
+                                            onSwiper={(swiper) => {
+                                                carouselRef1.current = swiper;
+                                            }}
+                                            breakpoints={{
+                                                0: { slidesPerView: 1, loop: true },
+                                                600: { slidesPerView: 3, loop: true },
+                                                1000: { slidesPerView: 3, loop: false }
+                                            }}
+                                        >
                                             {data1.map((item, index) => (
                                                 // console.log('filter item : ',item),
-                                                <div key={item.id} className='blog-card item men_sliderOver object-square'>
+                                                <SwiperSlide key={item.id} className='blog-card item men_sliderOver object-square'>
                                                     <div className='thum-blog'>
                                                         <Link to={item.link}>
                                                             <img src={item.image} alt={item.title} title={item.title} />
@@ -112,39 +154,41 @@ export default function SectionRocAbsWomen() {
                                                                     </g></svg>
                                                             </Link>
                                                         </div>
-                                                        <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' >
+                                                        <Link to={'#'} title='NFT Collectibles' className='btn nefcollection' onClick={() => toggleTable1(item.id)}>
                                                             NFT Collectibles
                                                         </Link>
-                                                        <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both', display: 'none' }}>
-                                                            <thead>
-                                                                <tr className='warning'>
-                                                                    <td>
-                                                                        <b>Limited Addition</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Price</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Availablity</b>
-                                                                    </td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {item.nft_collectibles.map((collectible, index) => (
-                                                                    <tr key={index} className={collectible.availability === 'SOLD' ? 'danger' : 'success'}>
-                                                                        <td>{collectible.limited_addition}</td>
-                                                                        <td>{collectible.price}</td>
-                                                                        <td className={collectible.availability === 'SOLD' ? 'text-danger' : 'text-success'}>
-                                                                            <b>{collectible.availability}</b>
+                                                        <CSSTransition in={isTableOpen1 === item.id} timeout={300} classNames="slide" unmountOnExit>
+                                                            <Table striped bordered hover className='nef_collection' style={{ marginTop: '10px', marginBottom: '0px', clear: 'both' }}>
+                                                                <thead>
+                                                                    <tr className='warning'>
+                                                                        <td>
+                                                                            <b>Limited Addition</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Price</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Availablity</b>
                                                                         </td>
                                                                     </tr>
-                                                                ))}
-                                                            </tbody>
-                                                        </Table>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {item.nft_collectibles.map((collectible, index) => (
+                                                                        <tr key={index} className={collectible.availability === 'SOLD' ? 'danger' : 'success'}>
+                                                                            <td>{collectible.limited_addition}</td>
+                                                                            <td>{collectible.price}</td>
+                                                                            <td className={collectible.availability === 'SOLD' ? 'text-danger' : 'text-success'}>
+                                                                                <b>{collectible.availability}</b>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ))}
+                                                                </tbody>
+                                                            </Table>
+                                                        </CSSTransition>
                                                     </div>
-                                                </div>
+                                                </SwiperSlide>
                                             ))}
-                                        </OwlCarousel>
+                                        </Swiper>
                                     </Col>
                                 </div>
                                 <div className='under-100k-women'>
@@ -154,18 +198,29 @@ export default function SectionRocAbsWomen() {
                                         <span>Vote for anyone you feel has what it takes to go viral</span>
                                     </h3>
                                     <div className='scroll-div female'>
-                                        <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' />
+                                        <FontAwesomeIcon icon={faLongArrowLeft} className='arrow-left' onClick={prevSlide2}/>
                                         <span class="scroll-text">Scroll</span>
-                                        <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' />
+                                        <FontAwesomeIcon icon={faLongArrowRight} className='arrow-right' onClick={nextSlide2}/>
                                     </div>
                                     <Col md={12} className='male-carousel' id='under_100k_women'>
-                                        <OwlCarousel className='owl-theme list-thum red-b-bottom owl-loaded' margin={8} items={3} nav responsive={{
-                                            0: { items: 1, loop: true },
-                                            600: { items: 3, loop: true },
-                                            1000: { items: 4, loop: false }
-                                        }}>
+                                        <Swiper
+                                            modules={[Navigation]}
+                                            id='over_100k_man'
+                                            className='list-thum red-b-bottom'
+                                            spaceBetween={8}
+                                            slidesPerView={4}
+                                            navigation={true}
+                                            onSwiper={(swiper) => {
+                                                carouselRef2.current = swiper;
+                                            }}
+                                            breakpoints={{
+                                                0: { slidesPerView: 1, loop: true },
+                                                600: { slidesPerView: 3, loop: true },
+                                                1000: { slidesPerView: 4, loop: false }
+                                            }}
+                                        >
                                             {data2.map((item, index) => (
-                                                <div key={item.id} className='blog-card item men_sliderUnder object-square' >
+                                                <SwiperSlide key={item.id} className='blog-card item men_sliderUnder object-square' >
                                                     <div className='thum-blog'>
                                                         <Link to={item.link}>
                                                             <img src={item.image} alt={item.title} title={item.title}></img>
@@ -194,11 +249,9 @@ export default function SectionRocAbsWomen() {
                                                             </Link>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </SwiperSlide>
                                             ))}
-
-                                        </OwlCarousel>
-
+                                        </Swiper>
                                     </Col>
                                 </div>
                             </Col>
