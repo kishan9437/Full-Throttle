@@ -13,9 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 
-
-
-export default function SectionRocAbs() {
+export default function SectionRocAbs({handleLikeClick}) {
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
   const carouselRef1 = useRef(null);
@@ -118,16 +116,6 @@ export default function SectionRocAbs() {
     setIsTableOpen(prevId => prevId === id ? null : id);
   };
 
-
-  const handleLikeClick = () => {
-    Swal.fire({
-      title: 'Login Required!',
-      html: 'Please <a href="">login</a> to <span class="actiontext">Vote</span>. If you do not have an account please <a href="">create an account</a>.',
-      icon: 'info',
-      confirmButtonColor: 'rgb(37, 37, 37)',
-      confirmButtonText: 'Skip',
-    });
-  }
   return (
     <>
       <section className='sec-roc-abs mens'>
@@ -284,7 +272,7 @@ export default function SectionRocAbs() {
                       }}
                     >
                       {data2.map((item, index) => (
-                        <SwiperSlide key={item.id} className={`blog-card item men_sliderUnder object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
+                        <SwiperSlide key={item.id} className={`blog-card1 item men_sliderUnder object-square ${highlightedItems.some((highlighted) => highlighted.name === item.name) ? 'highlight' : ''}`}>
                           <div className='thum-blog'>
                             <Link to={item.link}>
                               <img src={item.image} alt={item.title} title={item.title}></img>

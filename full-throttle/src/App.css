@@ -482,7 +482,7 @@ header button.btn.popupVideoBtn.head-btn:hover {
 }
 
 .menu-display ul.menu {
-  right: -60px !important;
+  right: -60px;
   font-size: 15px;
   overflow: hidden;
   list-style: none;
@@ -596,8 +596,13 @@ a:hover {
   max-width: 339px;
   border-radius: 2px;
   border: 1px solid #c2c2c2;
+  transition: all 0.4s ease-out;
+  outline: none;
 }
-
+.box-sec-inp input[type="text"]:focus{
+  /* border-color: #269bff; */
+  box-shadow: 0px 0px 8px rgba(38, 155, 255, 0.4); 
+}
 .box-sec-inp input[type="submit"] {
   height: 32px;
   background-color: #ec3237;
@@ -714,10 +719,7 @@ html body .owl-carousel {
   display: none;
   width: 100%;
 }
-/* .swiper .swiper-wrapper{
-  position: relative;
-  overflow: hidden;
-} */
+
 div#over_100k_man .swiper-wrapper .blog-card.item,
 div#over_100k_women .swiper-wrapper .blog-card.item {
   background: #efebf5;
@@ -752,6 +754,17 @@ div#over_100k_women .swiper-wrapper .blog-card.item .thum-blog img {
 .swiper .swiper-slide:hover img {
   transform: scale(1.1);
 }
+.blog-card1 {
+  float: left;
+  width: 100% ;
+  font-weight: 700;
+}
+
+.thum-blog {
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
 .slide-enter {
   max-height: 0;
   opacity: 0;
@@ -824,16 +837,6 @@ div#over_100k_women .owl-item .blog-card.item:hover {
   background: #e1dbed;
 }
 
-.blog-card {
-  float: left;
-  width: 100%;
-  font-weight: 700;
-}
-
-.thum-blog {
-  overflow: hidden;
-  margin-bottom: 12px;
-}
 
 div#over_100k_man .owl-item .blog-card.item .thum-blog img,
 div#over_100k_women .owl-item .blog-card.item .thum-blog img {
@@ -861,20 +864,6 @@ html body .swiper .swiper-button-next {
   opacity: 1;
 }
 
-/* html body .swiper .swiper-button-prev,
-html body .swiper .swiper-button-prev:hover {
-  left: -24px;
-  z-index: 2;
-
-  /* background: url(../src/assest/images/icon-arrow.png) no-repeat left top; 
-} */
-
-html body .owl-carousel .owl-nav .owl-next,
-html body .owl-carousel .owl-nav .owl-next:hover {
-  right: -24px;
-  background: url(../src/assest/images/icon-arrow.png) no-repeat right top;
-}
-
 .inn-box-blo {
   min-height: 120px;
 }
@@ -897,6 +886,7 @@ html body .owl-carousel .owl-nav .owl-next:hover {
   font-family: "Open sans";
   margin: 0px;
   padding: 0px;
+  font-weight: 700;
 }
 
 .inn-box-blo p strong {
@@ -976,8 +966,6 @@ a.icon-like.votes_like svg {
   transform: rotate(223deg);
 }
 
-/* CSS for slide-up and slide-down animations */
-
 table.table.table-striped.table-bordered.nef_collection {
   position: relative;
   overflow: hidden;
@@ -1034,31 +1022,6 @@ table.table.table-striped.table-bordered.table-hover.nef_collection::after {
 
 html body .owl-dots {
   display: none;
-}
-
-
-html body .owl-carousel .owl-nav .owl-prev,
-html body .owl-carousel .owl-nav .owl-next {
-  top: 121px;
-  width: 16px;
-  height: 84px;
-  margin-top: 6px;
-  box-shadow: none;
-  position: absolute;
-  text-indent: -999em;
-  opacity: 1;
-}
-
-html body .owl-carousel .owl-nav .owl-prev,
-html body .owl-carousel .owl-nav .owl-prev:hover {
-  left: -24px;
-  background: url(../src/assest/images/icon-arrow.png) no-repeat left top;
-}
-
-html body .owl-carousel .owl-nav .owl-next,
-html body .owl-carousel .owl-nav .owl-next:hover {
-  right: -24px;
-  background: url(../src/assest/images/icon-arrow.png) no-repeat right top;
 }
 
 .sec-roc-abs .row.row-roc-abs .col-add,
