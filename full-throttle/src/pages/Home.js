@@ -5,7 +5,7 @@ import SectionRocAbs from '../component/SectionRocAbs'
 import SectionGluteFeans from '../component/SectionGluteFeans'
 import SectionRocAbsWomen from '../component/SectionRocAbsWomen'
 import Swal from 'sweetalert2';
-
+import Reels from '../component/Reels'
 
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -32,6 +32,7 @@ export default function Home() {
             <SectionRocAbs handleLikeClick={handleLikeClick}/>
             <SectionGluteFeans handleShow={handleShow} handleClose={handleClose}/>
             <SectionRocAbsWomen handleLikeClick={handleLikeClick}/>
+            <Reels/>
           </Container>
         </div>
       </article>
