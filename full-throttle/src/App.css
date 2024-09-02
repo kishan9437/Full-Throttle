@@ -1183,35 +1183,77 @@ section.reels {
   overflow: hidden;
 }
 
-.reels-items-wrap{
+.reels-items-wrap {
   display: block;
 }
-section.spons-fta-bottom{
+
+section.spons-fta-bottom {
   width: 100%;
   padding: 30px 0px;
   clear: both;
   display: block;
 }
-footer{
+
+footer {
   background: #ededed;
   padding: 18px 0px 0px 0px;
   clear: both;
 }
-footer .container{
+
+footer .container {
   max-width: 1120px;
   width: 100%;
   padding: 40px 0px;
 }
-.row.footer_top_section{
-  margin: 0px ;
+
+.row.footer_top_section {
+  margin: 0px;
 }
-footer .logo-block{
+
+footer .logo-block {
   border-right: 1px solid #c4c4c4;
 }
-body .ftalogo img{
+
+body .ftalogo img {
   margin-top: -5px;
   margin-bottom: 1px;
 }
+
+footer .ficons {
+  margin-top: 33px;
+  text-align: center;
+  margin-bottom: 13px;
+}
+
+.row-copyright {
+  width: 100%;
+  padding-top: 5px;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 15px;
+  font-weight: 500;
+}
+
+.row-copyright p:first-child {
+  color: #000;
+  line-height: 31px;
+  font-weight: 600;
+  width: 100%;
+  margin-bottom: 3px !important;
+  padding: 0px;
+  font-size: 16px;
+  list-style: none;
+  display: inline-block;
+  /* font-family: Open Sans, sans-serif ; */
+}
+
+.row-copyright a {
+  color: #337ab7;
+  text-decoration: none;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 @media (min-width: 1500px) {
   section.reels .container {
     width: 1240px;
@@ -1451,6 +1493,29 @@ body .ftalogo img{
   .top-bar a.btn.btn-feedback-top {
     /* left: 60%; */
     white-space: nowrap;
+  }
+
+  footer .logo-block {
+    border: none;
+    text-align: center;
+  }
+
+  .menu-second-footer-menu-container .widget,
+  footer .logo-block a {
+    text-align: center;
+    max-width: 230px;
+    margin: auto;
+  }
+
+  footer .logo-block a span {
+    margin-bottom: 25px;
+    width: 100% !important;
+    max-width: 230px;
+    margin: auto;
+    font-size: 14px;
+  }
+  .menu-second-footer-menu-container{
+    margin-top: 25px !important;
   }
 }
 
