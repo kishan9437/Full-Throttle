@@ -49,6 +49,7 @@
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-body-bg: #fff;
+  --plyr-color-main: #c53026;
 
   /* font size */
   --bs-body-font-size: 1rem;
@@ -1175,17 +1176,6 @@ section.adv {
   padding: 30px 0px;
 }
 
-section.reels {
-  float: left;
-  width: 100%;
-  background: #f5f5f5;
-  padding: 40px 0px;
-  overflow: hidden;
-}
-
-.reels-items-wrap {
-  display: block;
-}
 
 section.spons-fta-bottom {
   width: 100%;
@@ -1254,6 +1244,196 @@ footer .ficons {
   padding-right: 5px;
 }
 
+section.reels {
+  float: left;
+  width: 100%;
+  background: #f5f5f5;
+  padding: 40px 0px;
+  overflow: hidden;
+}
+
+.reels-items-wrap {
+  display: block;
+}
+/* .reels-items-wrap .reel.item{
+  height: 447px; 
+} */
+.plyr {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  align-items: center;
+  direction: ltr;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  font-family: var(--plyr-font-family, inherit);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  font-weight: var(--plyr-font-weight-regular, 400);
+  line-height: 1.7;
+  line-height: var(--plyr-line-height, 1.7);
+  max-width: 100%;
+  min-width: 200px;
+  position: relative;
+  text-shadow: none;
+  transition: box-shadow .3s ease;
+  z-index: 0;
+}
+.reels-items-wrap .plyr.plyr--full-ui.plyr--video {
+  display: block;
+  height: 100%;
+}
+
+.reels-items-wrap .plyr.plyr--full-ui.plyr--video {
+  border-radius: 14px;
+  height: 447px;
+}
+.plyr--video .plyr__controls {
+  background: linear-gradient(#0000, #000000bf);
+  background: var(--plyr-video-controls-background, linear-gradient(#0000, #000000bf));
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  bottom: 0;
+  color: #fff;
+  color: var(--plyr-video-control-color, #fff);
+  left: 0;
+  padding: 5px;
+  padding: calc(var(--plyr-control-spacing, 10px) / 2);
+  padding-top: 20px;
+  padding-top: calc(var(--plyr-control-spacing, 10px)* 2);
+  position: absolute;
+  right: 0;
+  transition: opacity .4s ease-in-out, transform .4s ease-in-out;
+  z-index: 3;
+}
+.plyr audio, .plyr iframe, .plyr video {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.plyr__captions {
+  animation: plyr-fade-in .3s ease;
+  bottom: 0;
+  display: none;
+  font-size: 13px;
+  font-size: var(--plyr-font-size-small,13px);
+  left: 0;
+  padding: 10px;
+  padding: var(--plyr-control-spacing,10px);
+  position: absolute;
+  text-align: center;
+  transition: transform .4s ease-in-out;
+  width: 100%
+}
+.plyr--full-ui.plyr--video .plyr__control--overlaid {
+  display: block;
+}
+.plyr button {
+  font: inherit;
+  line-height: inherit;
+  width: auto;
+}
+header button.btn.popupVideoBtn.head-btn:hover .plyr__control {
+  background-color: white !important; 
+}
+header button.btn.popupVideoBtn.head-btn .plyr__control {
+  padding: 6px;
+  display: block;
+  position: relative;
+  left: 0;
+  background: red;
+  color: white;
+  fill: white;
+  transform: none;
+  transition: none;
+  margin-right: 6px;
+  width: 25px;
+  height: 25px;
+}
+.plyr__control--overlaid:focus, .plyr__control--overlaid:hover {
+  opacity: 1;
+}
+.plyr__control--overlaid {
+  background: #00b2ff;
+  background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #c53026))) !important;
+  /* var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #00b2ff))) */
+  border: 0;
+  border-radius: 100% !important;
+  color: #fff !important;
+  color: var(--plyr-video-control-color, #fff);
+  display: none;
+  left: 50%;
+  opacity: .9;
+  padding: 15px;
+  padding: calc(var(--plyr-control-spacing, 10px)* 1.5);
+  position: absolute;
+  /* top: 50%; */
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  transition: .3s;
+  z-index: 2;
+}
+.plyr__control {
+  background: #0000;
+  border: 0;
+  border-radius: 4px;
+  border-radius: var(--plyr-control-radius, 4px);
+  color: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: visible;
+  padding: 7px;
+  padding: calc(var(--plyr-control-spacing, 10px)* .7);
+  position: relative;
+  transition: all .3s ease;
+}
+
+header button.btn.popupVideoBtn.head-btn .plyr__control svg {
+  width: 17px;
+  height: 17px;
+} 
+
+.plyr__control--overlaid svg {
+  /* left: 2px; */
+  right: 2px;
+  bottom: 3px;
+  position: relative;
+}
+header button.btn.popupVideoBtn.head-btn:hover .plyr__control svg{
+  display:block;
+  position: relative;
+  background:white !important;
+  color:red;
+  fill:red !important;
+  transform: none;
+  margin-right:3px;
+  stroke: white;
+}
+
+.plyr__control svg {
+  fill: currentColor;
+  display: block;
+  height: 18px;
+  height: var(--plyr-control-icon-size, 18px);
+  pointer-events: none;
+  width: 18px;
+  width: var(--plyr-control-icon-size, 18px);
+}
+.plyr__sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  border: 0 !important;
+  height: 1px !important;
+  overflow: hidden;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+.plyr--video .plyr__control:focus-visible, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+  background: #00b2ff;
+  background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #00b2ff)));
+  color: #fff;
+  color: var(--plyr-video-control-color-hover, #fff);
+}
 @media (min-width: 1500px) {
   section.reels .container {
     width: 1240px;
@@ -1540,7 +1720,6 @@ footer .ficons {
   .hamburger {
     right: 15px;
   }
-
 
   .box-sec-inp input[type="text"] {
     max-width: 198px;

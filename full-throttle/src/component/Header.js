@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {  Col, Collapse, Container, Row } from 'react-bootstrap';
+import { Col, Collapse, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import title from '../assest/images/title.png';
 import nopic from '../assest/images/nopic.jpeg';
@@ -128,9 +128,18 @@ export default function Header() {
                         </Col>
                         <Col xs={12} sm={4} md={4} lg={4} xl={4} className='al-center'>
                             <button title='World Fitness Commmunity' className='btn popupVideoBtn head-btn' onClick={handleShow}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-play-circle plyr__control" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" className='' />
+                                {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-play-circle plyr__control" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" className='' width={'9.33px'} height={'12px'}/>
                                 </svg>
+                                <span className='plyr__sr-only'>Play Video</span> */}
+
+                                <span type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+                                    <svg aria-hidden="true" focusable="false"
+                                         viewBox="0 0 22 22">
+                                        <path d="M8 5v14l11-7z"></path>
+                                    </svg>
+                                    <span class="plyr__sr-only">Play</span>
+                                </span> 
                                 Video Overview
                             </button>
                         </Col>

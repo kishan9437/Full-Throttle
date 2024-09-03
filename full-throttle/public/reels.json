@@ -1,0 +1,10 @@
+{
+    "reels": [
+        {  
+            "id": "1",
+            "poster": "https://ftabody.s3.us-west-1.amazonaws.com/reels/testclient/1723196925_reel_poster.jpg",
+            "src": "https://ftabody.s3.us-west-1.amazonaws.com/reels/testclient/1723196925_main_reel.mp4",
+            "title": "gym"
+        }
+    ]
+}
