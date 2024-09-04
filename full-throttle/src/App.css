@@ -332,15 +332,15 @@ button.close.custom-close {
   padding-right: 1px;
 }
 
-.plyr--video {
+/* .plyr--video {
   overflow: hidden;
 }
 
 .plyr--full-ui {
   box-sizing: border-box;
-}
+} */
 
-.plyr__video-wrapper {
+/* .plyr__video-wrapper {
   background: #000;
   border-radius: inherit;
   height: 100%;
@@ -348,7 +348,7 @@ button.close.custom-close {
   overflow: hidden;
   position: relative;
   width: 100%;
-}
+} */
 
 .custom-modal {
   max-width: 960px;
@@ -630,8 +630,8 @@ a:hover {
 }
 
 .box-sec-inp input[type="submit"]:hover {
-  background-color: #fff;
-  color: #ec3237;
+  background-color: #fff !important;
+  color: #ec3237 !important;
 }
 
 .sec-roc-abs h3 {
@@ -1255,10 +1255,16 @@ section.reels {
 .reels-items-wrap {
   display: block;
 }
-/* .reels-items-wrap .reel.item{
-  height: 447px; 
+/* .reels-items-wrap .reel.item {
+  height: 447px;
+}
+.reels-items-wrap .reel.item {
+  float: left;
+  padding: 7px;
+  width: 100%;
+  cursor: pointer;
 } */
-.plyr {
+/* .plyr {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   align-items: center;
@@ -1278,7 +1284,7 @@ section.reels {
   text-shadow: none;
   transition: box-shadow .3s ease;
   z-index: 0;
-}
+} */
 .reels-items-wrap .plyr.plyr--full-ui.plyr--video {
   display: block;
   height: 100%;
@@ -1286,9 +1292,9 @@ section.reels {
 
 .reels-items-wrap .plyr.plyr--full-ui.plyr--video {
   border-radius: 14px;
-  height: 447px;
+  height: 443px;
 }
-.plyr--video .plyr__controls {
+/* .plyr--video .plyr__controls {
   background: linear-gradient(#0000, #000000bf);
   background: var(--plyr-video-controls-background, linear-gradient(#0000, #000000bf));
   border-bottom-left-radius: inherit;
@@ -1305,7 +1311,7 @@ section.reels {
   right: 0;
   transition: opacity .4s ease-in-out, transform .4s ease-in-out;
   z-index: 3;
-}
+} */
 .plyr audio, .plyr iframe, .plyr video {
   display: block;
   height: 100%;
@@ -1325,13 +1331,18 @@ section.reels {
   transition: transform .4s ease-in-out;
   width: 100%
 }
-.plyr--full-ui.plyr--video .plyr__control--overlaid {
-  display: block;
+
+.reels-items-wrap .plyr--video .plyr__controls{
+  display: none;
 }
-.plyr button {
+
+/* .plyr button {
   font: inherit;
   line-height: inherit;
   width: auto;
+} */
+div#worldfitness-cmmunity-video video {
+  width: 100%;
 }
 header button.btn.popupVideoBtn.head-btn:hover .plyr__control {
   background-color: white !important; 
@@ -1353,10 +1364,9 @@ header button.btn.popupVideoBtn.head-btn .plyr__control {
 .plyr__control--overlaid:focus, .plyr__control--overlaid:hover {
   opacity: 1;
 }
-.plyr__control--overlaid {
+/* .plyr__control--overlaid {
   background: #00b2ff;
-  background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #c53026))) !important;
-  /* var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #00b2ff))) */
+  background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #c53026)));
   border: 0;
   border-radius: 100% !important;
   color: #fff !important;
@@ -1367,13 +1377,22 @@ header button.btn.popupVideoBtn.head-btn .plyr__control {
   padding: 15px;
   padding: calc(var(--plyr-control-spacing, 10px)* 1.5);
   position: absolute;
-  /* top: 50%; */
-  bottom: 50%;
+   top: 50%; 
+  bottom: 56%;
   transform: translate(-50%, -50%);
   transition: .3s;
   z-index: 2;
+} */
+.plyr__background{
+  background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #c53026))) !important;
+  /* width: 48px !important; */
+  /* height: 48px; */
 }
-.plyr__control {
+/* .reels-items-wrap .plyr__control svg {
+  width: 30px;
+  height: 30px;
+} */
+/* .plyr__control {
   background: #0000;
   border: 0;
   border-radius: 4px;
@@ -1386,19 +1405,19 @@ header button.btn.popupVideoBtn.head-btn .plyr__control {
   padding: calc(var(--plyr-control-spacing, 10px)* .7);
   position: relative;
   transition: all .3s ease;
-}
+} */
 
 header button.btn.popupVideoBtn.head-btn .plyr__control svg {
-  width: 17px;
-  height: 17px;
+  width: 12px;
+  height: 13px;
 } 
 
-.plyr__control--overlaid svg {
-  /* left: 2px; */
+/* .plyr__control--overlaid svg {
+  /* left: 2px
   right: 2px;
   bottom: 3px;
   position: relative;
-}
+} */
 header button.btn.popupVideoBtn.head-btn:hover .plyr__control svg{
   display:block;
   position: relative;
@@ -1410,7 +1429,7 @@ header button.btn.popupVideoBtn.head-btn:hover .plyr__control svg{
   stroke: white;
 }
 
-.plyr__control svg {
+/* .plyr__control svg {
   fill: currentColor;
   display: block;
   height: 18px;
@@ -1418,8 +1437,8 @@ header button.btn.popupVideoBtn.head-btn:hover .plyr__control svg{
   pointer-events: none;
   width: 18px;
   width: var(--plyr-control-icon-size, 18px);
-}
-.plyr__sr-only {
+} */
+/* .plyr__sr-only {
   clip: rect(1px, 1px, 1px, 1px);
   border: 0 !important;
   height: 1px !important;
@@ -1427,13 +1446,52 @@ header button.btn.popupVideoBtn.head-btn:hover .plyr__control svg{
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-}
-.plyr--video .plyr__control:focus-visible, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+} */
+/* .plyr--video .plyr__control:focus-visible, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
   background: #00b2ff;
   background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, #00b2ff)));
   color: #fff;
   color: var(--plyr-video-control-color-hover, #fff);
+} */
+.vbun{
+  text-align: center;
+  padding-top: 15px;
 }
+.vbun .btn, input[type="submit"], input[type="button"], input[type="reset"] {
+  font-family: "Open Sans", sans-serif;
+  direction: ltr;
+  color: #fff;
+  font-size: 12px;
+  line-height: 25px;
+  padding: 5px 15px;
+  margin: 0em;
+  margin: 0px;
+  border: 2px solid #6a0000;
+  transition: all 0.4s ease-out;
+  border-radius: 100px;
+  box-sizing: border-box;
+  outline: none;
+  overflow: visible;
+  cursor: pointer;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #4b70fa;
+  box-shadow: 0px 0px 20px #eee;
+  background-image: linear-gradient(to right, #c53026 0%, #930000 51%, #c53026 100%);
+}
+.vbun .btn:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  color: #fff;
+  background-position: right center;
+} 
+/* .btn:hover, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+  color: #fff;
+  background-position: right center;
+} */
 @media (min-width: 1500px) {
   section.reels .container {
     width: 1240px;

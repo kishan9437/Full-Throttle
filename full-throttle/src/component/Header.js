@@ -5,7 +5,9 @@ import title from '../assest/images/title.png';
 import nopic from '../assest/images/nopic.jpeg';
 import Hamburger from 'hamburger-react'
 import { Modal } from 'react-bootstrap'
-import ReactPlayer from 'react-player'
+import Plyr from 'plyr-react';
+import 'plyr-react/plyr.css';
+
 
 export default function Header() {
     const [menuActive, setMenuActive] = useState(false);
@@ -98,21 +100,31 @@ export default function Header() {
                 </Col>
             </div>
 
-            <Modal show={show} onHide={handleClose} animation={false} dialogClassName="modal-dialog custom-modal" size='lg' centered>
+            <Modal show={show} onHide={handleClose} animation={false} dialogClassName="modal-dialog custom-modal" id='worldfitness-cmmunity-video' size='lg' centered>
                 <Modal.Body>
                     <button type="button" class="close custom-close" data-dismiss="modal" onClick={handleClose}>×</button>
                     <div className='videoSec'>
-                        <div className='plyr plyr--video plyr--full-ui'>
-                            <div className='plyr__video-wrapper'>
-                                <ReactPlayer
-                                    url="https://ftabody.s3.us-west-1.amazonaws.com/common-videos/earn_it_video.mp4"
-                                    playing={show}
-                                    controls
-                                    width="100%"
-                                    height="100%"
-                                />
-                            </div>
-                        </div>
+                        <Plyr
+                            source={{
+                                type: 'video',
+                                sources: [
+                                    {
+                                        src: 'https://ftabody.s3.us-west-1.amazonaws.com/common-videos/earn_it_video.mp4',
+                                        type: 'video/mp4',
+                                    },
+                                ],
+                            }}
+                            width={'900px'}
+                            height={'460px'}
+                            options={{
+                                autoplay: true,
+                                preload: 'auto',
+                            }}
+                            // poster="https://fullthrottlealways.com/wp-content/themes/FTA/video/earn_it.png"
+                        /> 
+                    </div>
+                    <div className='vbun'>
+                        <Link to={'/'} className='btn btn-grad popupBtn'>about full throttle always</Link>
                     </div>
                 </Modal.Body>
             </Modal>
@@ -128,18 +140,16 @@ export default function Header() {
                         </Col>
                         <Col xs={12} sm={4} md={4} lg={4} xl={4} className='al-center'>
                             <button title='World Fitness Commmunity' className='btn popupVideoBtn head-btn' onClick={handleShow}>
-                                {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-play-circle plyr__control" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" className='' width={'9.33px'} height={'12px'}/>
-                                </svg>
-                                <span className='plyr__sr-only'>Play Video</span> */}
-
-                                <span type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+                                {/* <span type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
                                     <svg aria-hidden="true" focusable="false"
-                                         viewBox="0 0 22 22">
+                                        viewBox="0 0 22 22">
                                         <path d="M8 5v14l11-7z"></path>
                                     </svg>
                                     <span class="plyr__sr-only">Play</span>
-                                </span> 
+                                </span> */}
+                                <span type='button' className='plyr__control plyr__control--overlaid'>
+                                    <svg aria-hidden="true" focusable="false"><use href="#plyr-play"></use></svg>
+                                </span>
                                 Video Overview
                             </button>
                         </Col>

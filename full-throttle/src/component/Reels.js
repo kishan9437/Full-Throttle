@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/swiper-bundle.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import FTA2 from '../assest/images/FTA2.jpg';
-// import Plyr from 'plyr-react';
-// import 'plyr-react/plyr.css';
-import ReactPlayer from 'react-player'
+import Plyr from 'plyr-react';
+import 'plyr-react/plyr.css';
 
 export default function Reels() {
     const [data, setData] = useState([])
@@ -57,22 +56,62 @@ export default function Reels() {
                                                     <div className='reel item' >
                                                         <div className='bg' style={{ backgroundImage: `url(${reel.poster})` }}></div>
                                                     </div>
-                                                    <div className='plyr plyr--full-ui plyr--video plyr--html5 plyr--stopped plyr__poster-enabled'>
-                                                        <div className='plyr__controls'></div>
-                                                        <div className='plyr__video-wrapper'>
-                                                            <video className='img-responsive' id={reel.id} poster={reel.poster} src={reel.src} height={'390px'} width={'auto'}></video>
-                                                        </div>
-                                                        <div className='plyr__captions'></div>
-                                                        <button></button>
-                                                        <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
-                                                            <svg aria-hidden="true" focusable="false"
-                                                                viewBox="0 0 22 22">
-                                                                <path d="M8 5v14l11-7z"></path>
-                                                            </svg>
+                                                    <Plyr
+                                                        source={{
+                                                            type: 'video',
+                                                            sources: [
+                                                                {
+                                                                    src: reel.src,
+                                                                    type: 'video/mp4',
+                                                                },
+                                                            ],
+                                                        }}
+                                                        id={reel.id}
+                                                        height={'390px'}
+                                                        width={'auto'}
+                                                        options={{
+                                                            autoplay: false,
+                                                            preload: 'auto',
+                                                            
+                                                        }}
+                                                    />
+                                                    {/* <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+                                                        <svg aria-hidden="true" focusable="false">
+                                                            <use href="#plyr-play"></use>
+                                                        </svg>
+                                                        <span class="plyr__sr-only">Play</span>
+                                                    </button> */}
+                                                        {/* <Plyr
+                                                        source={{
+                                                            type: 'video',
+                                                            sources: [
+                                                                {
+                                                                    src: reel.src ,
+                                                                    type: 'video/mp4',
+                                                                },
+                                                            ],
+                                                        }}
+                                                        videoId={reel.id}
+                                                        poster={reel.poster}
+                                                        url={reel.src}
+                                                        className='img-responsive'
+                                                        height={'390px'}
+                                                        width={'auto'}
+                                                    /> */}
 
-                                                            <span class="plyr__sr-only">Play</span>
-                                                        </button>
-                                                    </div>
+
+                                                        {/* <button
+                                                        type="button"
+                                                        className="plyr__control plyr__control--overlaid plyr__background"
+                                                        data-plyr="play"
+                                                        aria-pressed="false"
+                                                        aria-label="Play"
+                                                    >
+                                                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 22">
+                                                            <path d="M8 5v14l11-7z"></path>
+                                                        </svg>
+                                                        <span className="plyr__sr-only">Play</span>
+                                                    </button> */}
 
                                                 </SwiperSlide>
                                             ))
