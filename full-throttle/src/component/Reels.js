@@ -8,9 +8,15 @@ import 'swiper/css/navigation';
 import FTA2 from '../assest/images/FTA2.jpg';
 import Plyr from 'plyr-react';
 import 'plyr-react/plyr.css';
+import { Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import footer from '../assest/images/footerFTA.png';
 
 export default function Reels() {
     const [data, setData] = useState([])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const fetchData = async () => {
         try {
@@ -28,6 +34,65 @@ export default function Reels() {
     }, [])
     return (
         <>
+            <Modal show={show} fullscreen={true} onHide={handleClose} animation={false} dialogClassName="vertical-alignment-helper pop-ab-go force-v-center" id='reel-details-modal' size='lg' centered>
+                <Modal.Body >
+                    <button type="button" class="close custom-close" data-dismiss="modal" onClick={handleClose}>×</button>
+                    <div className='reel-details'>
+                        <div className='reel-details-wrap'>
+                            <div className='reel-details-data'>
+                                <div className='fta-reel-view' id='fta-reels'>
+                                    <div className='reel pus-ups-title a-height' style={{ textAlign: 'center' }}>
+                                        <div className='reel-wrapper-title'>
+                                            <Link to={'/'} title='Full Throttle Always' className='ftalogo'>
+                                                <img src={footer} alt='Full Throttle Always' title='Full Throttle Always'></img>
+                                                <span>World Fitness Community</span>
+                                            </Link>
+                                            <h2>push-ups</h2>
+                                            <div className='reel-details-add-a-pushup text-danger fw-bolder mb-4'>
+                                                <Link to={'/'} className='addPushUpsRedirect'>Add a Push-Up</Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {
+                                        data.map((reel, index) => (
+                                            <div className='reel item'>
+                                                <div className='reel-wrapper'>
+                                                    <div className='video'>
+                                                        <Plyr
+                                                            source={{
+                                                                type: 'video',
+                                                                sources: [
+                                                                    {
+                                                                        src: reel.src,
+                                                                        type: 'video/mp4',
+                                                                    },
+                                                                ],
+                                                            }}
+                                                            id={reel.id}
+                                                            poster={reel.poster}
+                                                            height={'390px'}
+                                                            width={'auto'}
+                                                            // controls={['play','volume']}
+                                                            options={{
+                                                                controls:['play','volume'],
+                                                                autoplay: true,
+                                                                muted:true,
+                                                                preload: 'auto',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </Modal.Body>
+            </Modal>
+
             <section className='reels'>
                 <Container>
                     <div className='reels-wrap'>
@@ -45,74 +110,36 @@ export default function Reels() {
                                         slidesPerView={6}
                                         navigation={true}
                                         breakpoints={{
-                                            0: { slidesPerView: 1, loop: true },
-                                            600: { slidesPerView: 3, loop: true },
-                                            1000: { slidesPerView: 4, loop: false }
+                                            0: { slidesPerView: 2, spaceBetween: 8, loop: true },
+                                            600: { slidesPerView: 4, spaceBetween: 8, loop: true },
+                                            1000: { slidesPerView: 6, loop: false }
                                         }}
                                     >
                                         {
                                             data.map((reel, index) => (
                                                 <SwiperSlide key={reel.id}>
-                                                    <div className='reel item' >
+                                                    <div className='reel item' onClick={handleShow}>
                                                         <div className='bg' style={{ backgroundImage: `url(${reel.poster})` }}></div>
+                                                        <Plyr
+                                                            source={{
+                                                                type: 'video',
+                                                                sources: [
+                                                                    {
+                                                                        src: reel.src,
+                                                                        type: 'video/mp4',
+                                                                    },
+                                                                ],
+                                                            }}
+                                                            id={reel.id}
+                                                            poster={reel.poster}
+                                                            height={'390px'}
+                                                            width={'auto'}
+                                                            options={{
+                                                                autoplay: false,
+                                                                preload: 'auto',
+                                                            }}
+                                                        />
                                                     </div>
-                                                    <Plyr
-                                                        source={{
-                                                            type: 'video',
-                                                            sources: [
-                                                                {
-                                                                    src: reel.src,
-                                                                    type: 'video/mp4',
-                                                                },
-                                                            ],
-                                                        }}
-                                                        id={reel.id}
-                                                        height={'390px'}
-                                                        width={'auto'}
-                                                        options={{
-                                                            autoplay: false,
-                                                            preload: 'auto',
-                                                            
-                                                        }}
-                                                    />
-                                                    {/* <button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
-                                                        <svg aria-hidden="true" focusable="false">
-                                                            <use href="#plyr-play"></use>
-                                                        </svg>
-                                                        <span class="plyr__sr-only">Play</span>
-                                                    </button> */}
-                                                        {/* <Plyr
-                                                        source={{
-                                                            type: 'video',
-                                                            sources: [
-                                                                {
-                                                                    src: reel.src ,
-                                                                    type: 'video/mp4',
-                                                                },
-                                                            ],
-                                                        }}
-                                                        videoId={reel.id}
-                                                        poster={reel.poster}
-                                                        url={reel.src}
-                                                        className='img-responsive'
-                                                        height={'390px'}
-                                                        width={'auto'}
-                                                    /> */}
-
-
-                                                        {/* <button
-                                                        type="button"
-                                                        className="plyr__control plyr__control--overlaid plyr__background"
-                                                        data-plyr="play"
-                                                        aria-pressed="false"
-                                                        aria-label="Play"
-                                                    >
-                                                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 22">
-                                                            <path d="M8 5v14l11-7z"></path>
-                                                        </svg>
-                                                        <span className="plyr__sr-only">Play</span>
-                                                    </button> */}
-
                                                 </SwiperSlide>
                                             ))
                                         }

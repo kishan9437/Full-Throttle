@@ -120,12 +120,10 @@ export default function Header() {
                                 autoplay: true,
                                 preload: 'auto',
                             }}
-                            // poster="https://fullthrottlealways.com/wp-content/themes/FTA/video/earn_it.png"
-                        /> 
+                        // poster="https://fullthrottlealways.com/wp-content/themes/FTA/video/earn_it.png"
+                        />
                     </div>
-                    <div className='vbun'>
-                        <Link to={'/'} className='btn btn-grad popupBtn'>about full throttle always</Link>
-                    </div>
+
                 </Modal.Body>
             </Modal>
 
@@ -140,13 +138,6 @@ export default function Header() {
                         </Col>
                         <Col xs={12} sm={4} md={4} lg={4} xl={4} className='al-center'>
                             <button title='World Fitness Commmunity' className='btn popupVideoBtn head-btn' onClick={handleShow}>
-                                {/* <span type="button" class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
-                                    <svg aria-hidden="true" focusable="false"
-                                        viewBox="0 0 22 22">
-                                        <path d="M8 5v14l11-7z"></path>
-                                    </svg>
-                                    <span class="plyr__sr-only">Play</span>
-                                </span> */}
                                 <span type='button' className='plyr__control plyr__control--overlaid'>
                                     <svg aria-hidden="true" focusable="false"><use href="#plyr-play"></use></svg>
                                 </span>
